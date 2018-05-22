@@ -1,0 +1,21 @@
+<div class="nested-fields" >
+	<%= f.select :ingredient_id, Ingredient.all.map { |u| [u.name_with_unit, u.id] }, { }, { class: "js-example-placeholder-single" } %>
+	<%= f.label :quantity, '量(数字で入力)' %>
+	<%= f.text_field :quantity, style: "width:20%;"%>
+	<%= link_to_remove_association "削除", f, style: "color: black;" %>
+</div>
+
+<script>
+	$(document).ready(function() {
+    	$(".js-example-placeholder-single").select2({
+		  placeholder: {
+		    id: '-1', // the value of the option
+		    text: 'Select an option'
+		  }
+		});
+	});
+
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>

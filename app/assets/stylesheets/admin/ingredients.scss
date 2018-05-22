@@ -1,0 +1,60 @@
+// Place all the styles related to the admin::ingredients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// admin/ingredients#index
+	// 食材登録フォーム
+		.ingredients-form {
+			float: left;
+		}
+
+	// 検索フォーム(admin/ingredients#show)
+		.search-box {
+			margin: 0 5px;
+			text-align: center;
+			float: left;
+			width: 250px;
+		}
+		dt .admin-ingredients-search-form {
+			margin-top: 0px;
+			border-radius: 5px 0 0 5px;
+			width: 200px;
+			height: 30px;
+			float: left;
+			// border: 1px solid;
+			// border-color: #ffd7d9;
+			display: inline-block;
+		}
+		dd .admin-search-button {
+			width: 30px;
+			height: 30px;
+			margin-left: 2px;
+			float: left;
+			border-radius: 0 5px 5px 0;
+			display: inline-block;
+		    margin-bottom: 0;
+		    font-weight: normal;
+		    text-align: center;
+		    vertical-align: middle;
+		    touch-action: manipulation;
+		    cursor: pointer;
+		    background-image: none;
+		    border: 1px solid transparent;
+		    white-space: nowrap;
+		    padding: 6px 6px;
+		    font-size: 14px;
+		    line-height: 1.428571429;
+		    border-radius: 4px;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+			// border: double;
+			// border-color: #ffd7d9;
+		}
+		dd .search-button:hover {
+			background-color: gray;
+			color: #fff;
+		}
+

@@ -1,0 +1,29 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+  <div class="row">
+    <div class="" style="max-width: 380px; margin: 30px auto 15px auto; text-align: center;">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス', style: 'width: 100%; height: 35px;' %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', style: 'width: 100%; height: 35px;' %>
+        </div>
+
+
+        <div class="field" style="margin-top: 15px;">
+          <%= f.submit "ログイン", class: 'btn main-btn', style: 'width: 100%;' %><br>
+        <% if devise_mapping.rememberable? -%>
+          <div class="field", style="margin: 15px 0;">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, "次回から自動的にログインする" %>
+          </div>
+        <% end -%>
+          <%= render "users/shared/links" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

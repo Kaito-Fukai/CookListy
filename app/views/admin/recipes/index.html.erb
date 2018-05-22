@@ -1,0 +1,48 @@
+<%= render 'layouts/admin_header' %>
+<div class="container">
+	<div class="row">
+		<!-- 左サイドバー -->
+		<div class="col-xs-2">
+		</div>
+		<!-- 中央コンテンツ -->
+		<div class="col-xs-10">
+			<h3>レシピ一覧</h3>
+				<% @recipes.each do |recipe| %>
+					<table class="table table-sm">
+						<thead></thead>
+						<tbody>
+							<tr>
+								<td style="width:175px;"> <%= attachment_image_tag recipe, :image, size:'140x120', fallback: "/images/no_image.jpg" %>
+									<%#= attachment_image_tag post.user, :profile_image, :fill, 45, 45, class: "img-square pull-left profile-thumb", fallback: "no_image.jpg" %>
+								</td>
+								<td>
+									<table>
+										<tr><td style="font-size: 20px; font-weight: bold;"> <%= link_to recipe.recipe_name, admin_recipe_path(recipe)  %> </td> </tr>
+										<tr><td>メモ：<%= recipe.memo %> </td> </tr>
+										<tr><td>材料：<% recipe.ingredients.each do |ingredients| %>
+											<%= ingredients.name %> 
+											<% end %> </td> </tr>
+										<tr><td>Tags：<% recipe.tags.each do |tags| %>
+												<span class="label label-default"><%= tags.word %></span>
+											<% end %> </td> </tr>
+									</table>
+								</td>
+								<td>
+									<ul class="recipe-index">
+										<li> <%= link_to "見る", admin_recipe_path(recipe), class: 'btn sub-btn col-xs-12' %> </li>
+										<li> <%= link_to "編集する", edit_admin_recipe_path(recipe), class: 'btn sub-btn col-xs-12' %> </li>
+										<li> <%= link_to "削除する", admin_recipe_path(recipe.id), method: :delete, class: 'btn danger-btn col-xs-12' %> </li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<%= render 'layouts/admin_footer'%>
+
+
+
+

@@ -1,0 +1,18 @@
+<header class="user_header row", style="background-color: #E8E497; ">
+	<div class="header-box">
+		<nav class="clearfix">
+			<%= link_to image_tag('/images/logo.png', :height => '40', :width => "auto", class: "logo"), admin_path %>
+			<div style="display: inline-block; margin-top: 30px; font-style: italic;"> 買い物リスト自動生成サービス </div>
+	  	  	<ul class="nav-list"> <!-- FIX:ハンバーガーメニュー化 -->
+	  			<li class="header-menu">
+	  				<%= link_to "TOP", root_path %></li>
+	  			<li class="header-menu">
+	  				<%= link_to "レシピ一覧", recipes_path %></li>
+	  			<li class="header-menu">
+		  			<%= link_to "Sign in", new_user_session_path %></li>
+	  			<li class="header-menu">
+		  			<%= link_to "メール送信", shopping_lists_send_path %></li>
+			</ul>
+		</nav>
+	</div>
+</header>

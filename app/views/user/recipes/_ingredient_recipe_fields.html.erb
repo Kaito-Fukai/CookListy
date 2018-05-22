@@ -1,0 +1,6 @@
+<div class="" >
+	<%= f.label :ingredient, '食材名' %>
+	<%= f.select :ingredient_id, Ingredient.all.map { |u| [u.name_with_unit, u.id] }, { }, { class: "js-example-basic-single"} %>
+	<%= f.label :quantity, '量' %>
+	<%= f.text_field :quantity %><br>
+</div>

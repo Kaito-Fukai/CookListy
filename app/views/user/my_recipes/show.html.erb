@@ -1,0 +1,86 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+	<div class="row">
+		<% if @recipe.user_id == current_user.id %>
+			<h3 class="col-xs-12" style="font-weight: bold"> <%= @recipe.recipe_name %> </h3>
+			<div class="clearfix" >
+				<div class="col-xs-4" style="float:left;">
+					<%= attachment_image_tag @recipe, :image, fallback: "/images/no_image.jpg", :size => '330x330', :style => 'margin-bottom: 10px;' %>
+					<%= link_to "お気に入りに追加", recipe_favorites_path(@recipe), method: :post, class: 'col-xs-4 btn recipe-show-btn' %>
+					<%= link_to "アレンジしてマイレシピに加える", edit_my_recipe_path(@recipe), class: 'col-xs-7 btn recipe-show-btn' %>
+				</div>
+				<div class="col-xs-5" style="float:left;">
+					<div class="col-xs-12">
+						Tags:<% @recipe.tags.each do |t| %>
+								 <div class="label label-default", style="font-size: 14px; margin-right:5px; ">
+								 	<%= t.word %>
+								 </div>
+							 <% end %>
+					</div>
+					<div class="col-xs-12", style="margin: 10px 0px; font-style: italic;">
+						- <%= @recipe.memo %>
+					</div>
+
+					<div class="col-xs-12">
+							<table rules="rows" frame="hsides" class="table col-xs-12">
+								<thead>
+									<h4 style="font-weight: bold ">食材</h4>
+								</thead>
+							<!-- <div class="col-xs-12" style="height: 1px; color: black;"></div> -->
+								<tbody>
+								<%= form_tag shopping_lists_path do %>
+								<% @recipe.ingredient_recipes.each do |i| %>
+									<tr>
+										<td> <%= check_box_tag('i[]', i.id) %></td>
+										<td> <%= i.ingredient.name %> </td>
+										<td>
+											<% if i.ingredient.unit.prepositive == nil %>
+												<%= i.quantity %><%= i.ingredient.unit.unit_name %>
+											<% else %>
+												<%= i.ingredient.unit.unit_name %><%= i.quantity %><%= i.ingredient.unit.prepositive %>
+											<% end %>
+										</td>
+									</tr>
+								<%= hidden_field_tag :recipe_id, @recipe.id %>
+								<% end %>
+								</tbody>
+							</table>
+					</div>
+				</div>
+					<div class="col-xs-3 recipe-show-btn-box" style="float:left; margin-top: 40px;">
+						<!-- チェックボックス＋submitボタンで実装 -->
+						<%#= submit_tag "チェックした食材を買い物リストに追加", class: 'btn recipe-show-main-btn' %>
+						<%= button_tag :type => "submit", :class => "btn recipe-show-main-btn" do %>
+							<p>チェックした食材を<br>買い物リストに入れる</p>
+							<% end %>
+						<% end %>
+
+
+						<!-- アクションへリダイレクトし、レシピ-家にあるもの → 残ったものをリストへ追加させる -->
+						<!-- <button class="btn recipe-show-main-btn col-xs-12">家にない材料を<br>買い物リストに入れる</button> -->
+
+						<!-- アクションへリダイレクトし、全ての食材をリストに追加させる -->
+						<%= link_to shopping_lists_path(:recipe_id  => @recipe.id), method: :post do %>
+						<button class="btn recipe-show-main-btn col-xs-12">全ての材料を<br>買い物リストに入れる</button>
+						<% end %>
+
+					</div>
+			</div>
+			<div class="col-xs-12" style="margin-top: 20px">
+				<h4 style="font-weight: bold;">作り方</h4>
+				<% @recipe.steps.each do |r| %>
+					<div class="col-xs-4" style="margin-bottom: 40px;">
+						手順<%= r.steps_order %>:<br>
+						<%= r.steps_expression %>
+					</div>
+				<% end %>
+			</div>
+		<% else %>
+			<h3 class="col-xs-12" style="font-weight: bold"> レシピが存在しません </h3>
+		<% end %>
+	</div>
+</div>
+
+<%= render 'layouts/footer' %>
+

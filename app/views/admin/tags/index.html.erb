@@ -1,0 +1,73 @@
+<%= render 'layouts/admin_header' %>
+<div class="container">
+	<div class="row">
+		<!-- 新規追加とか表のうえのメニュー -->
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<h3 style="display: inline-block; float;left">タグメニュー</h3>
+				<p style="display: inline-block; margin-left: 5px;">登録済みタグ全<%= Tag.count %>件を表示 </p>
+			</div>
+			<div class="col-xs-7">
+				<h4>新規登録</h4>
+				<%= form_for @new, url: admin_tags_path do |f| %>
+					<div class="col-xs-5">
+						<%= f.label :word, 'タグ名' %>
+						<%= f.text_field :word %>
+					</div>
+					<div class="col-xs-5">
+						<%= f.label :category, 'カテゴリ' %>
+						<%= f.text_field :category %>
+					</div>
+					<div class="col-xs-2">
+					<%= f.submit "新規登録", class: 'btn main-btn' %>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-xs-3">
+				<h4>絞り込み検索</h4>
+				<div class="search-box clearfix">
+					<dl>
+						<dt>
+							<%= search_form_for @q, :url => admin_tags_search_path do |f| %>
+							<%= f.search_field :word_cont, class: "form-control admin-ingredients-search-form", placeholder: "search" %>
+						</dt>
+						<dd>
+							<%= button_tag :type => "submit", :class =>"admin-search-button" do %>
+							<i class='glyphicon glyphicon-search'></i>
+							<% end %>
+						</dd>
+						<% end %>
+					</dl>
+				</div>
+			</div>
+		</div>
+<!-- 				<div class="col-xs-4">
+				<button type="">分類で絞り込む</button>
+			</div> -->
+		<div class="col-xs-11" style="margin: 15px 1.5%;">
+			<h4>登録済みタグ一覧</h4>
+			<table class="col-xs-12 table table-condensed">
+				<thead></thead>
+				<tbody>
+					<tr>
+						<th>ID</th>
+						<th>タグ名</th>
+						<th>カテゴリ</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<% @tags.each do |i| %>
+					<tr>
+						<td> <%= i.id %></td>
+						<td> <%= i.word %></td>
+						<td> <%= i.category %></td>
+						<td> <%= link_to "編集する", edit_admin_tag_path(i) %></td>
+						<td> <%= link_to "削除する", admin_tag_path(i), method: :delete %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/admin_footer' %>

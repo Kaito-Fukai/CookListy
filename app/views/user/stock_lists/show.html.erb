@@ -1,0 +1,68 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+	<div class="row">
+		<div class="", style="width: 90%; margin: 0 auto;">
+			<div class="">
+				<h3 style="display: inline-block;">家にあるものリスト</h3>
+				<%= link_to "全ての食材を削除する", stock_list_path(id: 'destroy_all'),method: :delete, class: 'btn btn-danger' %>
+			</div>
+			<table class="table table-sm">
+				<thead class="thead-light">
+					<tr>
+						<th>食材名</th>
+						<th>量</th>
+						<th><%= sortable "created_at", "賞味（消費）期限" %></th>
+						<th>リスト追加日</th>
+						<th>写真</th>
+						<th></th>
+						<!-- <th>  </th> -->
+					</tr>
+				</thead>
+				<tbody>
+						<% if @stocks.count == 0 %>
+							<td colspan="5"> （家にあるものリストに食材が登録されていません） </td>
+						<% else %>
+							<% @stocks.each do |s| %>
+								<tr>
+									<td> <%= s.ingredient.name %></td>
+									<td> <%= s.quantity %><%= s.ingredient.unit_in_lists %></td>
+									<td> <% if s.limit == nil %>
+ 										 	<%= "未登録" %>
+										 <% else %>
+			 								<%= s.limit.strftime('%Y/%m/%d') %>
+			 							 <% end %> </td>
+									<td> <%= s.created_at.strftime('%Y/%m/%d') %></td>
+									<td> <%= attachment_image_tag s, :stock_image,  :size => '100x100', fallback: "/images/no_image.jpg" %></td>
+									<td> <%= link_to "削除", stock_list_path(s), method: :delete, class: 'btn btn-warning' %></td>
+								</tr>
+							<% end %>
+						<% end %>
+				</tbody>
+			</table>
+
+			<div class="", style="margin-bottom: 20px;">
+				<h3>食材を追加する</h3>
+				<%= form_for @new_stock, url: stock_lists_path, method: :post do |f| %>
+					<span style="margin-right: 20px; float: left;">写真</span>
+					<%= f.attachment_field :stock_image,style: 'float: left;' %>
+					<span>食材名
+					<%= f.select :ingredient_id, Ingredient.where(basic_unit_flag: true).map {|u| [u.name_with_unit, u.id]}, {}, {class: "js-example-basic-single"} %></span>
+					<%#= f.select :recipe_id, Recipe.all.map {|u| [u.recipe_name, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<span style="margin-left: 20px;">数量
+					<%= f.number_field :quantity, :width => '20px', :min => 1 %></span>
+					<span style="margin-left: 20px;">賞味（消費）期限
+					<%= f.date_field :limit %></span>
+					<%= f.submit "リストに追加", class: 'btn btn-default' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/footer' %>
+								<%# if i.recipe_id =! nil %>
+							 	<%#= i.recipe.recipe_name %>
+							 	<%# else %>
+							 	<!-- <p></p> -->
+							 <%# end %>

@@ -1,0 +1,25 @@
+<%= render 'layouts/header' %>
+<div class="container">
+	<div class="row">
+		<!-- 左サイドバー -->
+		<div class="col-xs-2">
+		</div>
+		<!-- 中央コンテンツ -->
+		<div class="col-xs-10">
+			<h3>最近作ったレシピ一覧</h3>
+			<%= render 'layouts/recipes_index', recipes: @recipes %>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/footer'%>
+
+
+
+<!--
+								<td>
+									<table>
+										<tr> <td> <%#= link_to "見る", recipe_path(recipe) %> </td> </tr>
+										<tr> <td> <%#= link_to "お気に入りに追加",  recipe_favorites_path(recipe.id), method: :post %> </td> </tr>
+										<tr> <td> <%#= link_to "アレンジしてマイレシピに加える", edit_my_recipe_path(recipe) %> </td> </tr>
+									</table>
+								</td> -->

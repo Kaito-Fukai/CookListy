@@ -1,0 +1,32 @@
+<footer class="user_footer row", style="background-color: #666666; ">
+		<nav class="clearfix" style="width: 75%; margin: 0 auto;">
+			<span class="footer-menu-box col-xs-3">
+				<span class="footer-caption col-xs-10" style="text-align: center;">レシピ管理</span><br>
+					<%= link_to "既存レシピ一覧", admin_recipes_path %><br>
+					<%= link_to "レシピ新規登録", new_admin_recipe_path %>
+			</span>
+			<span class="footer-menu-box-center col-xs-4">
+				<div>
+					<span class="footer-caption col-xs-12">食材管理</span><br>
+					<%= link_to "登録済み食材一覧", admin_ingredients_path %>
+				</div>
+
+				<div>
+					<span class="footer-caption col-xs-12">タグ管理</span><Br>
+					<%= link_to "タグ一覧・編集", admin_tags_path %>
+				</div>
+
+				<div>
+					<span class="footer-caption col-xs-12">ユーザー情報管理</span><Br>
+					<%= link_to 'ユーザー一覧・ユーザー情報編集', admin_users_path %>
+				</div>
+			</span>
+
+			<span class="footer-menu-box-right col-xs-3">
+				<span class="footer-caption col-xs-12">管理者情報</span><br>
+				<%= link_to 'プロフィール確認・編集', admin_administrator_path(current_administrator.id) %>
+				<%#= link_to '管理者一覧', admin_users_path %>
+			</span>
+		</nav>
+		<h6 class="col-xs-12" style="text-align: center; color: white;">Copyright © 2018 Kaito Fukai All Rights Reserved.</h6>
+</footer>

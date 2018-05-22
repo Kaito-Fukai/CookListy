@@ -1,0 +1,14 @@
+<%= render 'layouts/header' %>
+<div class="container">
+	<div class="row">
+		<!-- 左サイドバー -->
+		<div class="col-xs-2">
+		</div>
+		<!-- 中央コンテンツ -->
+		<div class="col-xs-10">
+			<h3>お気に入りレシピ一覧</h3>
+			<%= render 'layouts/recipes_index', recipes: @recipes %>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/footer'%>

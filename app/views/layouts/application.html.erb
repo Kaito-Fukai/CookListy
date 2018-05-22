@@ -1,0 +1,19 @@
+
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title>CookListy2</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+  <body>
+    <div class="background">
+      <%= yield %>
+    </div>
+  </body>
+</html>

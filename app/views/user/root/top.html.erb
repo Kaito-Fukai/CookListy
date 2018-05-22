@@ -1,0 +1,48 @@
+<%= render 'layouts/header'%>
+
+	<div class="container">
+		<div class="row">
+			<div class="subtitle">さあ、すぐに料理をはじめよう！</div>
+
+			<div class="menu-box clearfix">
+				<div class="find-recipes">
+					<span class="menu-name">料理を<br>探す<br></span><br>
+					<ul class="menu-button-box col-xs-12" style="text-align: center;">
+						<li class="btn menu-button"> <%= link_to '既存のレシピから', recipes_path %> </li>
+						<li class="btn menu-button"> <%= link_to 'お気入りから', favorites_path %> </li>
+						<li class="btn menu-button"> <%= link_to '最近作った料理から', recently_cooked_recipes_path %> </li>
+					</ul>
+				</div>
+
+				<div class="shoppinglist">
+					<span class="menu-name">買い物<br>リストを<br>見る</span> <br>
+					<ul class="menu-button-box col-xs-12" style="text-align: center;">
+						<li class="btn menu-button">
+							<% if user_signed_in? %>
+								<%= link_to '買い物リストへ', shopping_list_path(current_user) %> </li>
+							<% else %>
+								<%= link_to new_user_session_path do %> 
+								<div>買い物リストへ<br>※要ログイン</div></li>
+								<% end %>
+							<% end %>
+					</ul>
+				</div>
+
+				<div class="stocklist">
+					<span class="menu-name">家にある<br>ものを<br>チェック</span> <br>
+					<ul class="menu-button-box col-xs-12">
+						<li class="btn menu-button">
+							<% if user_signed_in? %>
+								<%= link_to '家にあるものリストへ', stock_list_path(current_user) %> </li>
+							<% else %>
+								<%= link_to new_user_session_path do %> 
+								<div>家にあるものリストへ<br>※要ログイン</div></li>
+								<% end %>
+							<% end %>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+<%= render 'layouts/footer'%>

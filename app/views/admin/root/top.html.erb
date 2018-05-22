@@ -1,0 +1,48 @@
+<%= render 'layouts/admin_header' %>
+
+<div class="container">
+	<div class="row">
+		<h3 class="" style="margin: 20px auto; width: 80%;">管理者メニュー</h3>
+		<div class="" style="margin:20px auto; width: 80%;">
+			<table class="table admin-menu-table" style="border-top: none;">
+				<tbody>
+					<tr>
+						<td>レシピ管理</td>
+						<td><%= link_to "既存レシピ一覧", admin_recipes_path %></td>
+					</tr>
+						<tr>
+							<td></td>
+							<td><%= link_to "レシピ新規登録", new_admin_recipe_path %></td>
+						</tr>
+					<tr>
+						<td>食材管理</td>
+						<td><%= link_to "登録済み食材一覧", admin_ingredients_path %> </td>
+					</tr>
+						<tr>
+							<td></td>
+							<td><%= link_to "食材新規登録", admin_ingredients_path %> </td>
+						</tr>
+					<tr>
+						<td>タグ管理</td>
+						<td><%= link_to "タグ一覧・編集", admin_tags_path %></td>
+					</tr>
+					<tr>
+						<td>ユーザー管理</td>
+						<td><%= link_to "ユーザー一覧・ユーザー情報編集", admin_users_path %></td>
+					</tr>
+	<!-- 				<tr>
+						<td colspan="2">管理者情報</td>
+						<td><%#= link_to "管理者プロフィール設定", %></td>
+						<td><%#= link_to "管理者一覧", %></td>
+					</tr>
+	 -->				<tr>
+						<td></td>
+						<td><%= link_to "ログアウトする", destroy_administrator_session_path, method: :delete %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/admin_footer' %>

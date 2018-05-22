@@ -1,0 +1,55 @@
+<div class="container">
+	<%= render 'layouts/admin_header' %>
+		<div class="row">
+			<!-- 新規追加とか表のうえのメニュー -->
+			<div class="col-xs-12">
+				<div class="col-xs-12">
+					<p> 登録済み食材 全<%#= 食材の件数 %> 件中 ○○件を表示 </p>
+				</div>
+				<div class="col-xs-4">
+					<%= form_for @new, url: admin_tags_path do |f| %>
+						<%= f.text_field :word %>
+						<%= f.text_field :category %>
+						<%= f.submit "食材を新規追加する" %>
+					<% end %>
+				</div>
+				<div class="col-xs-4">
+					<%= search_form_for @q, :url => admin_tags_search_path do |f| %>
+						<dt>
+							<%= f.search_field :word_cont, class: "form-control search-form", placeholder: "search" %>
+						</dt>
+						<dd>
+							<%= button_tag :type => "submit", :class =>"btn btn-default" do %>
+							<i class='glyphicon glyphicon-search'></i>
+							<% end %>
+						</dd>
+					<% end %>
+				</div>
+				<div class="col-xs-4">
+					<button type="">分類で絞り込む</button>
+				</div>
+			</div>
+			<table class="col-xs-12 table table-striped">
+					<thead></thead>
+					<tbody>
+						<tr>
+							<th>ID</th>
+							<th>タグ名</th>
+							<th>カテゴリ</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<% @tags.each do |i| %>
+						<tr>
+							<td> <%= i.id %></td>
+							<td> <%= i.word %></td>
+							<td> <%= i.category %></td>
+							<td> <%#= link_to "編集する", path %></td>
+							<td> <%#= link_to "編集する", path %></td>
+							<td> <%#= link_to "削除する", path %></td>
+						</tr>
+						<% end %>
+					</tbody>
+			</table>
+		</div>
+</div>

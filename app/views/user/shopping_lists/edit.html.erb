@@ -1,0 +1,86 @@
+<%= render 'layouts/header' %>
+
+<script>
+	$(document).ready(function() {
+    	$('.js-example-basic-single').select2();
+	});
+
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
+
+
+<div class="container">
+	<div class="row">
+		<div class="", style="width: 90%; margin: 0 auto;">
+			<div class="">
+				<h3 style="display: inline-block;">買い物リスト</h3>
+				<%= link_to "買い物リストをメールで送る", shopping_lists_send_path, class: 'btn main-btn' %>
+				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, class: 'btn btn-danger' %>
+			</div>
+			<div class="col-xs-12">
+				<h3>編集する</h3>
+				<%= form_for @ingredient, url: shopping_list_path(@ingredient) do |f| %>
+					<span style="margin-left: 20px;">食材名</span>
+					<%= f.select :ingredient_id, Ingredient.where(basic_unit_flag: true).map {|u| [u.name_with_unit, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<%#= f.select :recipe_id, Recipe.all.map {|u| [u.recipe_name, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<span style="margin-left: 20px;">数量</span>
+					<%= f.number_field :quantity, :width => '20px' %>
+					<%= f.submit "変更を反映する", class: 'btn btn-default' %>
+				<% end %>
+			</div>
+			<table class="table table-sm">
+				<thead class="thead-light">
+					<tr>
+						<th>№</th>
+						<th>食材名</th>
+						<!-- <th>使う料理</th> -->
+						<th>量</th>
+						<th><%= sortable "created_at", "追加日時" %><%= "(クリックで並べ替え可)" %></th>
+						<th colspan="2"> メニュー </th>
+						<!-- <th>  </th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<% if @ingredients.count == 0 %>
+					<tr>
+						<td> （買い物リストに食材が登録されていません） </td>
+					<% else %>
+						<% n = 0 %>
+						<% @ingredients.each do |i| %>
+							<td> <% n += 1 %><%= n %></td>
+							<td> <%= i.ingredient.name %></td>
+							<!-- <td></td> -->
+							<td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td>
+							<td> <%= i.created_at.to_s(:created_at) %></td>
+							<td> <%= link_to "編集", edit_shopping_list_path(i), class: 'btn btn-default' %>
+								 <%= link_to "削除", shopping_list_path(i), method: :delete, class: 'btn btn-warning' %></td>
+					</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+
+			<div class="", style="margin-bottom: 20px;">
+				<h3>食材を追加する</h3>
+				<%= form_for @new_ingredient, url: shopping_lists_path, method: :post do |f| %>
+					<span>食材名</span>
+					<%= f.select :ingredient_id, Ingredient.where(basic_unit_flag: true).map {|u| [u.name_with_unit, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<%#= f.select :recipe_id, Recipe.all.map {|u| [u.recipe_name, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<span style="margin-left: 20px;">数量</span>
+					<%= f.number_field :quantity, :width => '20px' %>
+					<%= f.submit "リストに追加", :i => "1", class: 'btn btn-default' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/footer' %>
+
+								<%# if i.recipe_id =! nil %>
+							 	<%#= i.recipe.recipe_name %>
+							 	<%# else %>
+							 	<!-- <p></p> -->
+							 <%# end %>

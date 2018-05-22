@@ -1,0 +1,36 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+	<div class="row">
+		<div class="" style="width: 75%; margin: 0 auto;">
+			<div style="max-width:380px; margin: 0 auto;">
+				<%= form_for @user, url: profile_update_user_path(@user) do |f| %>
+					<h3 class="">ご登録情報編集</h3>
+					<dl class="profile-edit">
+						<dd><%= f.label :last_name, '姓' %></dd>   <dt><%= f.text_field :last_name, style: 'width: 100%; height: 35px;' %></dt>
+					</dl>
+					<dl class="profile-edit" style="margin-right: 0px;">
+						<dd><%= f.label :first_name, '名' %></dd> <dt><%= f.text_field :first_name, style: 'width: 100%; height: 35px;' %></dt>
+					</dl> </br>
+					<dl class="profile-edit">
+						<dd><%= f.label :last_name_kana, '姓（かな）' %></dd><dt><%= f.text_field :last_name, style: 'width: 100%; height: 35px;' %></dt>
+					</dl>
+					<dl class="profile-edit">
+						<dd><%= f.label :first_name, '名（かな）' %></dd> <dt><%= f.text_field :first_name, style: 'width: 100%; height: 35px;' %></dt>
+					</dl> </br>
+					<dl class="profile-edit-full">
+						<dd><%= f.label :email, 'メールアドレス' %></dd> <dt><%= f.email_field :email, placeholder: 'メールアドレス',style: 'width: 100%; height: 35px;' %></dt>
+					</dl></br>
+					<dl class="profile-edit-full">
+						<dd><%= f.label :password, 'パスワード' %></dd> <dt> <%= f.password_field :password,placeholder: 'パスワード', autocomplete: "off", style: 'width: 100%; height: 35px;' %>
+							<%= f.password_field :password_confirmation, placeholder: 'パスワード（確認）',autocomplete: "off", style: 'width: 100%; height: 35px;'%>
+						</dt>
+					</dl></br>
+						<%= f.submit '更新', class: 'btn main-btn col-xs-12' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/footer' %>

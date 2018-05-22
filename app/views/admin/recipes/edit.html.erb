@@ -1,0 +1,13 @@
+<%= render 'layouts/admin_header' %>
+
+<div class="container" style="margin-bottom: 20px;">
+	<div class="row">
+		<%= form_for @recipe, url: admin_recipe_path do |f| %>
+		<!-- 名称〜タグ〜写真 -->
+		<%= render 'layouts/recipe_form', recipe: @recipe, f: f %>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/admin_footer' %>

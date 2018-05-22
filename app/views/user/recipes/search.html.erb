@@ -1,0 +1,15 @@
+<%= render 'layouts/header' %>
+<div class="container">
+	<div class="row">
+		<!-- 左サイドバー -->
+		<div class="col-xs-2">
+		</div>
+		<!-- 中央コンテンツ -->
+		<div class="col-xs-10">
+			<h3 style="display: inline-block; float;left">タグメニュー</h3>
+			<p style="display: inline-block; margin-left: 5px;">"<%= @word %>"での検索結果 全<%= @recipes.count %>件</p>
+			<%= render 'layouts/recipes_index', recipes: @recipes %>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/footer'%>

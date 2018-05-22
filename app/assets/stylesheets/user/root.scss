@@ -1,0 +1,61 @@
+// Place all the styles related to the user::root controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.subtitle {
+	font-style: italic;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.menu-box {
+	text-align: center;
+	margin: 0 auto;
+	width: 70%;
+}
+.find-recipes {
+	width: 25%;
+	height: 290px;
+	float: left;
+	background-color: #8DFF65;
+	margin: 60px 0px;
+	font-weight: bold;
+}
+.stocklist{
+	width: 25%;
+	height: 290px;
+	float: right;
+	background-color: #8DFF65;
+	margin: 60px 0px;
+	font-weight: bold;
+}
+.shoppinglist {
+	width: 25%;
+	height: 290px;
+	float: left;
+	margin: 60px 12.5%;
+	background-color: #8DFF65;
+	font-weight: bold;
+}
+.menu-name {
+	color: white;
+	font-size: 40px;
+	display: inline-block;
+	margin-top: 5px;
+	margin-bottom: 35px;
+}
+.menu-button-box {
+	// text-align: center;
+	margin-bottom: 10px;
+}
+.menu-button {
+	background-color: #EFEFEF;
+	color: black;
+	margin: 5px auto 5px auto;
+	list-style: none;
+	width: 95%;
+	font-weight: normal;
+}
+.menu-button a {
+	color: black;
+}

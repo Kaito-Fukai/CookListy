@@ -1,0 +1,49 @@
+<div class="">
+	<% recipes.each do |recipe| %>
+		<table class="table table-sm">
+			<thead></thead>
+			<tbody>
+				<tr>
+					<td style="width:175px;"> <%= attachment_image_tag recipe, :image, size:'140x120', fallback: "/images/no_image.jpg" %>
+						<%#= attachment_image_tag post.user, :profile_image, :fill, 45, 45, class: "img-square pull-left profile-thumb", fallback: "no_image.jpg" %>
+					</td>
+					<td>
+						<table>
+							<tr><td style="font-size: 20px; font-weight: bold;"> <%= link_to recipe.recipe_name, recipe_path(recipe)  %> </td> </tr>
+							<tr><td>メモ：<%= recipe.memo %> </td> </tr>
+							<tr><td>材料：<% recipe.ingredients.each do |ingredients| %>
+								<%= ingredients.name %>
+								<% end %> </td> </tr>
+							<tr><td>Tags：<% recipe.tags.each do |tags| %>
+									<span class="label label-default"><%= tags.word %></span>
+								<% end %> </td> </tr>
+							<% if request.path_info.include?("recently_cooked") %>
+								<tr><td style="font-size: 12px; font-style: italic;"><%= @recentlyAddedToList.first.created_at.strftime('%Y/%m/%d') %> にこのレシピから買い物リストを作成<td></tr>
+							<% end %>
+						</table>
+					</td>
+					<td>
+						<ul class="recipe-index">
+							<% if request.path_info.include?("my_recipes") %>
+								<li> <%= link_to "見る", my_recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "編集", edit_my_recipe_path(recipe.id), class: 'btn sub-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "マイレシピから削除",  my_recipe_path(recipe), method: :delete, class: 'btn danger-btn recipe-index-btn' %> </li>
+							<% elsif request.path_info.include?("favorites") %>
+								<li> <%= link_to "見る", recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "アレンジしてマイレシピに追加", new_my_recipe_path(recipe), class: 'btn sub-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "お気に入りから削除", favorite_path(recipe), method: :delete, class: 'btn danger-btn recipe-index-btn' %> </li>
+							<% else %>
+								<li> <%= link_to "見る", recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "お気に入りに追加", recipe_favorites_path(recipe), method: :post, class: 'btn sub-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "アレンジしてマイレシピに追加", new_my_recipe_path(recipe_id: recipe.id), class: 'btn sub-btn recipe-index-btn' %> </li>
+							<% end %>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+</div>
+<!-- 								<li> <%#= link_to "見る", my_recipe_path(recipe), class: 'btn main-btn col-xs-12' %> </li>
+								<li> <%#= link_to "編集する",  edit_my_recipe_path(recipe.id), class: 'btn sub-btn col-xs-12' %> </li>
+								<li> <%#= link_to "マイレシピから削除", my_recipe_path(recipe), method: :delete, class: 'btn danger-btn col-xs-12' %> </li> -->

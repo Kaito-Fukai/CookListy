@@ -1,0 +1,86 @@
+<%= render 'layouts/admin_header' %>
+
+<div class="container">
+	<div class="row">
+		<h3 class="col-xs-12" style="font-weight: bold"> <%= @recipe.recipe_name %> </h3>
+		<div class="clearfix" >
+			<div class="col-xs-4" style="float:left;">
+				<%= attachment_image_tag @recipe, :image, fallback: "/images/no_image.jpg", :size => '330x330', :style => 'margin-bottom: 10px;' %>
+			</div>
+			<div class="col-xs-5" style="float:left;">
+				<div class="col-xs-12">
+					Tags:<% @recipe.tags.each do |t| %>
+							 <div class="label label-default", style="font-size: 14px; margin-right:5px; ">
+							 	<%= t.word %>
+							 </div>
+						 <% end %>
+				</div>
+				<div class="col-xs-12", style="margin: 10px 0px; font-style: italic;">
+					- <%= @recipe.memo %>
+				</div>
+				<div class="col-xs-12">
+						<table rules="rows" frame="hsides" class="table col-xs-12">
+							<thead>
+								<h4 style="font-weight: bold ">食材</h4>
+							</thead>
+						<!-- <div class="col-xs-12" style="height: 1px; color: black;"></div> -->
+							<tbody>
+							<% @recipe.ingredient_recipes.each do |i| %>
+								<tr>
+									<td> <%= i.ingredient.name %> </td>
+									<td> <%= i.quantity %><%= i.ingredient.unit.unit_name %> </td>
+								</tr>
+							<% end %>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<div class="col-xs-3" style="float:left;">
+				<h3 class="" style="font-weight: bold; margin-top: 0px;">管理者向け情報</h3>
+				<table class="table">
+					<tr>
+						<td>分類</td>
+						<td><% if @recipe.user_id.blank? %>
+							既存レシピ
+							<% else %>
+							ユーザー作成レシピ
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td>登録者</td>
+						<td><% if @recipe.user_id.blank? %>
+								管理者： ID <%= @recipe.administrator_id %> / <%= @recipe.administrator.name %>
+							<% else %>
+								ユーザー：ID <%= @recipe.user_id %> / <%= @recipe.user.last_name %><%= @recipe.user.first_name %>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td>登録日時</td>
+						<td><%= @recipe.created_at.to_s(:created_at) %>
+					</tr>
+					<tr>
+						<td>更新日時</td>
+						<td><%= @recipe.updated_at.to_s(:updated_at) %>
+					</tr>
+				</table>
+				<!-- アクションへリダイレクトし、レシピ-家にあるもの → 残ったものをリストへ追加させる -->
+				<%= link_to "編集する", edit_admin_recipe_path(@recipe), class: 'btn sub-btn col-xs-12' %>
+				<!-- アクションへリダイレクトし、全ての食材をリストに追加させる -->
+				<%= link_to "削除する", admin_recipe_path(@recipe), class: 'btn danger-btn col-xs-12' %>
+			</div>
+		</div>
+		<div class="col-xs-12" style="margin-top: 20px">
+			<h4 style="font-weight: bold;">作り方</h4>
+			<% @recipe.steps.each do |r| %>
+				<div class="col-xs-4" style="margin-bottom: 40px;">
+					手順<%= r.steps_order %>:<br>
+					<%= r.steps_expression %>
+				</div>
+			<% end%>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/admin_footer' %>

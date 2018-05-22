@@ -1,0 +1,13 @@
+<%= render 'layouts/admin_header' %>
+
+<div class="container">
+	<div class="row">
+		<h3>レシピ新規登録</h3>
+		<%= form_for @recipe, url: admin_recipes_path do |f| %>
+			<%= render 'layouts/recipe_form', recipe: @recipe, f: f %>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+<%= render 'layouts/admin_footer' %>

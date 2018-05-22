@@ -1,0 +1,41 @@
+<footer class="user_footer row", style="background-color: #666666; ">
+		<nav class="clearfix" style="width: 75%; margin: 0 auto;">
+			<span class="footer-menu-box col-xs-4">
+				<span class="footer-caption col-xs-10">レシピを探す</span><br>
+					<span class="col-xs-11" style="margin-left: 20px; text-align: left;">
+						<%= link_to '既存のレシピ一覧を見る', recipes_path, style: 'text-align: left' %>
+						<%= link_to 'お気に入り一覧を見る', favorites_path %>
+						<%= link_to '最近作った料理を見る', recently_cooked_recipes_path %>
+					</span>
+			</span>
+			<span class="footer-menu-box-center col-xs-4">
+				<div>
+					<span class="footer-caption col-xs-12">買い物リスト</span><br>
+						<% if user_signed_in? %>
+							<%= link_to '買い物リストを見る・編集する', shopping_list_path(current_user) %> </li>
+						<% else %>
+							<%= link_to '買い物リストを見る※要ログイン', new_user_session_path %> </li>
+						<% end %>
+				</div>
+
+				<div>
+					<span class="footer-caption col-xs-12" style="margin-top: 20px;">家にあるものリスト</span><br>
+						<% if user_signed_in? %>
+							<%= link_to '家にあるものリストを見る・編集する', stock_list_path(current_user) %></li>
+						<% else %>
+							<%= link_to '家にあるものリストへ※要ログイン', new_user_session_path %> </li>
+						<% end %>
+				</div>
+			</span>
+			<span class="footer-menu-box-right col-xs-4">
+				<span class="footer-caption col-xs-12">ユーザー情報</span><br>
+				<%= link_to 'マイレシピ一覧を見る・編集する', my_recipes_path %>
+				<%= link_to 'マイレシピを新規作成する', new_my_recipe_path %>
+
+				<% if user_signed_in? %>
+					<%= link_to 'プロフィールを見る・編集する', user_path(current_user) %>
+				<% end %>
+			</span>
+		</nav>
+		<h6 class="col-xs-12 copyright">Copyright © 2018 Kaito Fukai All Rights Reserved.</h6>
+</footer>

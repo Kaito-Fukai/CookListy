@@ -1,0 +1,42 @@
+<header class="header row", style="background-color: #FFCF34; ">
+	<div class="header-box">
+		<nav class="clearfix user_header">
+			<%= link_to image_tag('/images/logo.png', :height => '40', :width => "auto", class: "logo"),root_path %>
+			<div style="display: inline-block; margin: 27.5px 5px 0px 5px; font-style: italic; float: left;"> 買い物リスト自動生成サービス </div>
+			<div class="search-box clearfix">
+				<dl>
+					<%= search_form_for @q, :url => recipes_search_path do |f| %>
+					<dt>
+						<%= f.search_field :recipe_name_cont, class: "form-control search-form", placeholder: "レシピ名で検索" %></dt>
+						<dd>
+							<%= button_tag :type => "submit", :class =>"search-button" do %>
+							<i class='glyphicon glyphicon-search'></i>
+							<% end %>
+						</dd>
+						<% end %>
+					</dl>
+				</div>
+				<ul class="nav-list"> <!-- FIX:ハンバーガーメニュー化 -->
+					<% if user_signed_in? %>
+						<li class="header-menu">
+						<%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+						     <div style="line-height: 79px; float: left">|</div>
+			  			<li class="header-menu">
+						<%= link_to 'マイレシピ', my_recipes_path(current_user) %> </li>
+						     <div style="line-height: 79px; float: left">|</div>
+						<li class="header-menu">
+						<%= link_to '買い物リスト ', shopping_list_path(current_user) %>  </li>
+						     <div style="line-height: 79px; float: left">|</div>
+						<li class="header-menu">
+						<%= link_to '家にあるものリスト ', stock_list_path(current_user) %>  </li>
+					<% else %>
+						<li class="header-menu">
+						<%= link_to "ログイン", new_user_session_path %>
+						     <div style="line-height: 79px; float: left">|</div> </li>
+						<li class="header-menu">
+						<%= link_to "新規登録", new_user_registration_path %> </li>
+					<% end %>
+				</ul>
+			</nav>
+		</div>
+	</header>
