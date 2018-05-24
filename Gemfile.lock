@@ -116,6 +116,7 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    json (1.8.3.1)
     kakurenbo-puti (0.5.0)
       activerecord (>= 4.1.0)
     kaminari (1.1.1)
@@ -149,6 +150,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.2)
+    mysql2 (0.4.10)
     netrc (0.11.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
@@ -297,9 +299,11 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  json
   kakurenbo-puti
   kaminari
   listen (>= 3.0.5, < 3.2)
+  mysql2
   pry-byebug
   pry-coolline
   pry-rails
