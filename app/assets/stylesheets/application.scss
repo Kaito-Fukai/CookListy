@@ -25,6 +25,13 @@ a {
 	color: black;
 }
 
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",MyYuGothicM,Meiryo,sans-serif;
+    -webkit-font-feature-settings: "pkna";
+    font-feature-settings: "pkna";
+    -webkit-font-smoothing: antialiased;
+}
+
 // user/adminヘッダー
 // user footer
 // recipe#show系
@@ -140,11 +147,13 @@ a {
 	margin-left: 9px;
 }
 .footer-caption {
-	font-weight: bold;
+	font-size: 22px;
 	color: white;
+	margin-top: 25px;
+	margin-bottom: -5px;
 }
 .user_footer a {
-	font-style: italic;
+	// font-style: italic;
 	color: white;
 }
 .footer-menu-box-center {
