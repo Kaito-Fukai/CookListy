@@ -3,7 +3,7 @@
 	<%= f.select :ingredient_id, Ingredient.all.map { |u| [u.name_with_unit, u.id] }, { }, { class: "js-example-basic-single"} %>
 	<%= f.label :quantity, '量てす' %>
 	<%= f.text_field :quantity %><br>
-	<%= link_to_remove_association "remove task", f %>
+	<%= link_to_remove_association "削除", f %>
 </div>
 
 <script>

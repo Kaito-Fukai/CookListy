@@ -8,7 +8,9 @@
 		<div class="col-xs-10">
 			<h3>マイレシピ一覧</h3>
 			<%= render 'layouts/recipes_index', recipes: @recipes %>
-			<%= paginate @recipes, class: 'paginate' %>
+			<div class="pagenation">
+				<%= paginate @recipes, class: 'paginate' %>
+			</div>
 		</div>
 	</div>
 </div>

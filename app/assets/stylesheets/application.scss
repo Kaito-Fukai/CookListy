@@ -25,6 +25,8 @@ a {
 	color: black;
 }
 
+
+
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",MyYuGothicM,Meiryo,sans-serif;
     -webkit-font-feature-settings: "pkna";
@@ -32,12 +34,15 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+
 // user/adminヘッダー
 // user footer
 // recipe#show系
 // recipe#index系
 
-
+.pagenation {
+	text-align: center;
+}
 
 
 // userページ背景画像
@@ -49,6 +54,7 @@ body {
     background-image: image-url("background_modified.jpg");
     padding-top: 200px;
     overflow: auto;
+    min-height: 700px;
 
 }
 

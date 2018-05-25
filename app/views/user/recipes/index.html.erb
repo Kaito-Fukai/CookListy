@@ -36,10 +36,12 @@
 			<h3>既存レシピ一覧</h3>
 			<%= render 'layouts/recipes_index', recipes: @recipes %>
 		</div>
-		<%= paginate @recipes, class: 'pagenate' %>
+		<div class="pagenation">
+			<%= paginate @recipes, class: 'pagenate' %>
+		</div>
 	</div>
 </div>
-<%= render 'layouts/footer'%>
+<%#= render 'layouts/footer'%>
 
 
 <script>
