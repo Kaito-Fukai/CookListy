@@ -3,7 +3,7 @@ class Admin::RecipesController < ApplicationController
 	before_action :authenticate_administrator!
 
 	def index
-		@recipes = Recipe.all 
+		@recipes = Recipe.page(params[:page]).reverse_order
 	end
 
 	def show

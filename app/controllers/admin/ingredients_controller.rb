@@ -4,14 +4,14 @@ class Admin::IngredientsController < ApplicationController
   def index
   	@q = Ingredient.ransack(params[:q])
 
-  	@ingredients = Ingredient.all
+  	@ingredients = Ingredient.page(params[:page]).reverse_order
   	@new = Ingredient.new
   	@units = Unit.select(:id).distinct
   end
 
   def search
   	@q = Ingredient.search(search_params)
-  	@ingredients = @q.result(distinct: true)
+  	@ingredients = @q.result(distinct: true).page(params[:page]).reverse_order
     @word = params[:q]["word_cont"]
 
   	@new = Ingredient.new

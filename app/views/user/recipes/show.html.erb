@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<% if @recipe.user_id == current_user.id %>
+		<% if @recipe.user_id == current_user.id || @recipe.user_id == nil %>
 			<h3 class="col-xs-12" style="font-weight: bold"> <%= @recipe.recipe_name %> </h3>
 			<div class="clearfix" >
 				<div class="col-xs-4" style="float:left;">

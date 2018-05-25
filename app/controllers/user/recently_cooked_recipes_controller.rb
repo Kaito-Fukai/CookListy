@@ -2,7 +2,7 @@ class User::RecentlyCookedRecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+  @recipes = RecentlyCookedRecipe.page(params[:page]).reverse_order
   end
 
   def create
