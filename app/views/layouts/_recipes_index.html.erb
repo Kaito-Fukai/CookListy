@@ -4,12 +4,12 @@
 			<thead></thead>
 			<tbody>
 				<tr>
-					<td style="width:175px;"> <%#= attachment_image_tag recipe, :image, size:'140x120', fallback: "/images/no_image.jpg" %>
+					<td  class="col-lg-3"style="width:175px;"> <%#= attachment_image_tag recipe, :image, size:'140x120', fallback: "/images/no_image.jpg" %>
 						<%#= attachment_image_tag post.user, :profile_image, :fill, 45, 45, class: "img-square pull-left profile-thumb", fallback: "no_image.jpg" %>
 					</td>
-					<td>
+					<td class="col-lg-6">
 						<table>
-							<tr><td style="font-size: 20px; font-weight: bold;"> <%= link_to recipe.recipe_name, recipe_path(recipe)  %> </td> </tr>
+							<tr><td style="font-size: 20px;"> <%= link_to recipe.recipe_name, recipe_path(recipe)  %> </td> </tr>
 							<tr><td>メモ：<%= recipe.memo %> </td> </tr>
 							<tr><td>材料：<% recipe.ingredients.each do |ingredients| %>
 								<%= ingredients.name %>
@@ -22,7 +22,7 @@
 							<% end %>
 						</table>
 					</td>
-					<td>
+					<td class="col-lg-3">
 						<ul class="recipe-index">
 							<% if request.path_info.include?("my_recipes") %>
 								<li> <%= link_to "見る", my_recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>

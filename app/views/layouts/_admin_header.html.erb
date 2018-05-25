@@ -5,17 +5,10 @@
 			<div style="display: inline-block; margin-top: 30px; font-style: italic;"> 買い物リスト自動生成サービス </div>
 	  	  	<ul class="nav-list"> <!-- FIX:ハンバーガーメニュー化 -->
 	  			<li class="header-menu">
-	  				<%= link_to "TOP", root_path %></li>
+					<span>ログイン中の管理者：<%= current_administrator.name %></li>
 					<div style="line-height: 79px; float: left">|</div>
 	  			<li class="header-menu">
-	  				<%= link_to "レシピ一覧", recipes_path %></li>
-					<div style="line-height: 79px; float: left">|</div>
-	  			<li class="header-menu">
-		  			<%= link_to "Sign in", new_user_session_path %></li>
-					<div style="line-height: 79px; float: left">|</div>
-	  			<li class="header-menu">
-		  			<%= link_to "メール送信", shopping_lists_send_path %></li>
-					<div style="line-height: 79px; float: left">|</div>
+					<%= link_to "ログアウトする", destroy_administrator_session_path, method: :delete %></li>
 			</ul>
 		</nav>
 	</div>

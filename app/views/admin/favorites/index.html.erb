@@ -11,7 +11,9 @@
 				<p>マイレシピがありません</p>
 			<% else %>
 				<%= render 'layouts/recipes_index', recipes: @recipes %>
-				<%= paginate @recipes, class: 'paginate' %>
+				<div class="pagenation">
+					<%= paginate @recipes, class: 'paginate' %>
+				</div>
 			<% end %>
 		</div>
 	</div>
