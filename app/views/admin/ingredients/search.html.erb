@@ -102,9 +102,11 @@
 								<% end %>
 							</tbody>
 					</table>
-					<%= paginate @ingredients, class: 'paginate' %>
+					<div class="pagenation">
+						<%= paginate @ingredients, class: 'paginate' %>
+					</div>
 				</div>
 			</div>
 		</div>
 </div>
-<%= render 'layouts/admin_footer' %>
+<%#= render 'layouts/admin_footer' %>
