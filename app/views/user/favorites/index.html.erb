@@ -7,7 +7,12 @@
 		<!-- 中央コンテンツ -->
 		<div class="col-xs-10">
 			<h3>お気に入りレシピ一覧</h3>
-			<%= render 'layouts/recipes_index', recipes: @recipes %>
+			<% if @recipes.count == 0 %>
+				<p>お気に入りレシピがありません</p>
+			<% else %>
+				<%= render 'layouts/recipes_index', recipes: @recipes %>
+				<%= paginate @recipes, class: 'paginate' %>
+			<% end %>
 		</div>
 	</div>
 </div>

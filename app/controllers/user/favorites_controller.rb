@@ -3,7 +3,7 @@ class User::FavoritesController < ApplicationController
 
   def index
     f = Favorite.where(user_id: current_user.id)
-    @recipes = Recipe.where(id: f)
+    @recipes = Recipe.where(id: f).page(params[:page]).reverse_order
   end
 
   def new

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       resources :my_recipes
 
       get '/recipes/search', to: 'recipes#search'
+      get '/recipes/tag_search', to: 'recipes#tagSearch'
+
       resources :recipes,       only:   [:index, :show] do
        resources :favorites,    only:   [:create]
       end
