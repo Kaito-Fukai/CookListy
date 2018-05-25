@@ -1,6 +1,6 @@
 <div class="nested-fields">
 	<%= f.select :tag_id, Tag.all.map { |t| [t.word, t.id]}, {}, { class: 'js-example-basic-multiple col-xs-11', multiple: "multiple"} %>
-	<%= link_to_remove_association "x", f, style: "color: black;" %>
+	<%= link_to_remove_association "削除", f, style: "color: black;" %>
 	<br>
 </div>
 

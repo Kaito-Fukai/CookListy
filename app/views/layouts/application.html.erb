@@ -12,8 +12,17 @@
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
   <body>
-    <div class="background">
-      <%= yield %>
+    <div id="wrap">
+      <div class="background">
+        <%= yield %>
+      </div>
+      <div class="">
+        <% if request.url.include?("admin")  %>
+          <%= render 'layouts/admin_footer' %>
+        <% else %>
+          <%= render 'layouts/footer' %>
+        <% end %>
+      </div>
     </div>
   </body>
 </html>
