@@ -12,13 +12,17 @@
 				     	<div class="answer">
 				        	<p>	<%# link_to recipes_search_path(:q => "豚") do %>
 				        		<% Tag.where(category: t.category).each do |w| %>
-				        				<%= search_form_for @q, :url => recipes_search_path do |f| %>
-											<%= f.search_field :recipe_name_cont, value: w.word, style: 'display: none;' %>
-												<%= button_tag :type => 'submit', :class => 'search-tag label' do %>
-										<%#= link_to w.word, recipes_search_path, %>
-													<%= w.word %>
-												<% end %>
-										<% end %>
+										<%= link_to w.word, recipes_tag_search_path(tag_id: w.id), class: 'search-tag label' %>
+
+
+
+
+				        				<%#= form_tag(recipes_tag_search_path) do %>
+											<%#= text_field_tag :tag_id, w.id %>
+												<%#= button_tag "検索", class: 'search-tag label' do %>
+													<%#= w.word %>
+												<%# end %>
+										<%# end %>
 
 								<% end %></p>
 				     	</div>
@@ -32,6 +36,7 @@
 			<h3>既存レシピ一覧</h3>
 			<%= render 'layouts/recipes_index', recipes: @recipes %>
 		</div>
+		<%= paginate @recipes, class: 'pagenate' %>
 	</div>
 </div>
 <%= render 'layouts/footer'%>

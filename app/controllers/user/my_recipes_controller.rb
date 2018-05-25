@@ -2,7 +2,7 @@ class User::MyRecipesController < ApplicationController
   before_action :authenticate_user!
 
 	def index
-		@recipes = Recipe.where(user_id: current_user.id)
+		@recipes = Recipe.where(user_id: current_user.id).page(params[:page]).reverse_order
 	end
 
 	def show

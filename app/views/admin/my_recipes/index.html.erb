@@ -1,2 +1,15 @@
-<h1>Admin::MyRecipes#index</h1>
-<p>Find me in app/views/admin/my_recipes/index.html.erb</p>
+<%= render 'layouts/admin_header' %>
+<div class="container">
+	<div class="row">
+		<!-- 左サイドバー -->
+		<div class="col-xs-2">
+		</div>
+		<!-- 中央コンテンツ -->
+		<div class="col-xs-10">
+			<h3>マイレシピ一覧</h3>
+			<%= render 'layouts/recipes_index', recipes: @recipes %>
+			<%= paginate @recipes, class: 'paginate' %>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/admin_footer'%>
