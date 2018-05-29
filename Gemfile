@@ -74,6 +74,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # added for deployment
-gem 'json'
+gem 'json', '1.8.3'
 gem 'mysql2'
 gem 'listen', '>= 3.0.5', '< 3.2'
