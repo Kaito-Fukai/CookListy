@@ -65,7 +65,7 @@
 			<div class="col-xs-12" style="margin-top: 20px">
 				<h4 style="font-weight: bold;">作り方</h4>
 				<% recipe.steps.each do |r| %>
-					<div class="col-xs-4" style="margin-bottom: 40px;">
+					<div class="col-xs-4" style="margin-bottom: 20px; overflow: hidden; height: 6.5em;">
 						手順<%= r.steps_order %>:<br>
 						<%= r.steps_expression %>
 					</div>
