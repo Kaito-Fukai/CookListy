@@ -35,10 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass'
+gem 'cocoon'
 gem 'devise'
-# gem 'enum_help'
-# gem 'gon'
-# gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'kakurenbo-puti'
@@ -46,17 +44,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
-
-# gem 'compass-rails', github: 'Compass/compass-rails'
-# gem 'chosen-rails'
-# gem 'tag-it-rails'
-# gem 'select2-rails'
-# gem 'link_to_add_fields'
-
-# gem 'nested_form_fields'
-
-gem 'cocoon'
-gem 'dotenv-rails'
+gem 'seed-fu'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,6 +52,13 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  gem 'dotenv-rails'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'pry-byebug'
+  gem 'pry-coolline'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -78,16 +73,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :development, :test do
-  gem 'hirb'
-  gem 'hirb-unicode'
-  gem 'pry-byebug'
-  gem 'pry-coolline'
-  gem 'pry-rails'
-  gem 'seed-fu'
-end
-
+# added for deployment
 gem 'json'
 gem 'mysql2'
 gem 'listen', '>= 3.0.5', '< 3.2'
-gem 'seed-fu'
