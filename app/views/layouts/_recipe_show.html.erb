@@ -30,10 +30,14 @@
 										<td> <%= check_box_tag('i[]', i.id) %></td>
 										<td> <%= i.ingredient.name %> </td>
 										<td>
-											<% if i.ingredient.unit.prepositive == nil %>
-												<%= i.quantity %><%= i.ingredient.unit.unit_name %>
+											<% if i.ingredient.unit.id == 10 %>
+												<%= i.ingredient.unit.unit_name %>
 											<% else %>
-												<%= i.ingredient.unit.unit_name %><%= i.quantity %><%= i.ingredient.unit.prepositive %>
+												<% if i.ingredient.unit.prepositive == nil %>
+													<%= i.quantity %><%= i.ingredient.unit.unit_name %>
+												<% else %>
+													<%= i.ingredient.unit.unit_name %><%= i.quantity %><%= i.ingredient.unit.prepositive %>
+												<% end %>
 											<% end %>
 										</td>
 									</tr>
