@@ -18,7 +18,7 @@
       </div>
       <div class="">
         <% if request.url.include?("admin")  %>
-          <%= render 'layouts/admin_footer' %>
+          <%= render 'layouts/admin_footer' unless request.url.include?("sign_in") %>
         <% else %>
           <%= render 'layouts/footer' %>
         <% end %>
