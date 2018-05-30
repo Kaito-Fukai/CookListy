@@ -33,7 +33,6 @@ class User::MyRecipesController < ApplicationController
 	def update
 		my_recipe = Recipe.find(params[:id])
 		my_recipe.update(recipe_params)
-		binding.pry
 
 		RecipeTag.where(recipe_id: params[:id]).destroy_all
 		tags = params[:recipe][:recipe_tags_attributes]

@@ -45,13 +45,13 @@ $(document).ready(function() {
 							<td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td>
 							<td> <%= i.created_at.to_s(:created_at) %></td>
 							<td>
-								<% if i.recipe_id == nil %>
-								<% else %>
+								<% if i.recipe.present? %>
 								<%= i.recipe.recipe_name %>
+								<% else %>
 								<% end %>
 							</td>
 							<td> <%= link_to "編集", edit_shopping_list_path(i), class: 'btn btn-default' %>
-								 <%= link_to "削除", shopping_list_path(i), method: :delete, class: 'btn btn-warning' %></td>
+								 <%= link_to "削除", shopping_list_path(i), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
 					</tr>
 						<% end %>
 					<% end %>
@@ -74,6 +74,12 @@ $(document).ready(function() {
 </div>
 
 <%#= render 'layouts/footer' %>
+
+								<%# if i.recipe_id == nil %>
+								<%# else %>
+								<%#= i.recipe.recipe_name %>
+								<%# end %>
+
 
 
 								<%# if i.recipe_id =! nil %>
