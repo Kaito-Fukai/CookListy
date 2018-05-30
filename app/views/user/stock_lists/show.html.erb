@@ -34,7 +34,7 @@
 			 							 <% end %> </td>
 									<td> <%= s.created_at.strftime('%Y/%m/%d') %></td>
 									<td> <%= attachment_image_tag s, :stock_image,  :size => '100x100', fallback: "/images/no_image.jpg" %></td>
-									<td> <%= link_to "削除", stock_list_path(s), method: :delete, class: 'btn btn-warning' %></td>
+									<td> <%= link_to "削除", stock_list_path(s), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
 								</tr>
 							<% end %>
 						<% end %>

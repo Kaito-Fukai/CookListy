@@ -34,6 +34,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 gem 'bootstrap-sass'
 gem 'cocoon'
 gem 'devise'
@@ -45,6 +48,11 @@ gem 'ransack'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'seed-fu'
+
+# added for deployment
+gem 'json', '1.8.3'
+gem 'mysql2'
+gem 'listen', '>= 3.0.5', '< 3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,10 +78,3 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# added for deployment
-gem 'json', '1.8.3'
-gem 'mysql2'
-gem 'listen', '>= 3.0.5', '< 3.2'

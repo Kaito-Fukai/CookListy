@@ -55,7 +55,7 @@ $(document).ready(function() {
 							<td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td>
 							<td> <%= i.created_at.to_s(:created_at) %></td>
 							<td> <%= link_to "編集", edit_shopping_list_path(i), class: 'btn btn-default' %>
-								 <%= link_to "削除", shopping_list_path(i), method: :delete, class: 'btn btn-warning' %></td>
+								 <%= link_to "削除", shopping_list_path(i), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
 					</tr>
 						<% end %>
 					<% end %>
