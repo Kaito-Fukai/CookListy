@@ -1,4 +1,4 @@
 email,password,last_name,first_name,last_name_kana,first_name_kana,retire_flag,helper_name_1,helper_address_1,helper_name_2,helper_name_2,helper_name_3,helper_name_3
-yaiag04@gmail.com,vvvvvv,深井,海斗,フカイ,カイト,FALSE,佐野暁宣,hmgfstwi@gmail.com,,,,
-2@gmail.com,vvvvvv,佐野,暁宣,サノ,アキノリ,FALSE,平林拓馬,3@gmail.com,,,,
-test.for.pf.cooklisty@gmail.com,vvv123,TEST,ACCOUNT,テスト,アカウント,FALSE,深井海斗,yaiag04@gmail.com,,,,
+yaiag04@gmail.com,vvvvvv,深井,海斗,フカイ,カイト,会員,佐野暁宣,hmgfstwi@gmail.com,,,,
+2@gmail.com,vvvvvv,佐野,暁宣,サノ,アキノリ,会員,平林拓馬,3@gmail.com,,,,
+test.for.pf.cooklisty@gmail.com,vvv123,TEST,ACCOUNT,テスト,アカウント,会員,深井海斗,yaiag04@gmail.com,,,,
