@@ -2,7 +2,8 @@ class User::RecentlyCookedRecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  @recipes = RecentlyCookedRecipe.page(params[:page]).reverse_order
+      @recipes = Recipe.includes(:recently_cooked_recipes).where(recently_cooked_recipes: { user_id: current_user.id}).page(params[:page]).reverse_order
+      @recentlyAddedToList = RecentlyCookedRecipe.where(user_id: current_user.id)
   end
 
   def create
