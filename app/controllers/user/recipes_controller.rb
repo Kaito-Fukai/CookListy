@@ -14,7 +14,7 @@ class User::RecipesController < ApplicationController
 		def index
 			@new_favorite = Favorite.new
 			@recipes = Recipe.where(user_id: nil).page(params[:page])
-			@tags = Tag.all
+			@tags = TagCategory.all
 		end
 
 		def show

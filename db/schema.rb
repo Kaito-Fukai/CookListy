@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510030249) do
+ActiveRecord::Schema.define(version: 20180601031350) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -123,12 +123,18 @@ ActiveRecord::Schema.define(version: 20180510030249) do
     t.string "text"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "word", null: false
-    t.string "category", null: false
+  create_table "tag_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category"], name: "index_tags_on_category"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "word", null: false
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tags_on_category_id"
     t.index ["word"], name: "index_tags_on_word"
   end
 
