@@ -6,6 +6,11 @@
 					<%= link_to "アレンジしてマイレシピに加える", edit_my_recipe_path(recipe), class: 'col-xs-7 btn recipe-show-btn' %>
 				</div>
 				<div class="col-xs-5" style="float:left;">
+					<% if flash[:alert] %>
+					    <div class="flash-alert">
+					        <%= flash[:alert] %>
+					    </div>
+				    <% end %>
 					<div class="col-xs-12">
 						Tags:<% recipe.tags.each do |t| %>
 								 <div class="label label-default", style="font-size: 14px; margin-right:5px; ">
@@ -18,33 +23,34 @@
 					</div>
 
 					<div class="col-xs-12">
-							<table rules="rows" frame="hsides" class="table col-xs-12">
-								<thead>
-									<h4 style="font-weight: bold ">食材</h4>
-								</thead>
-							<!-- <div class="col-xs-12" style="height: 1px; color: black;"></div> -->
-								<tbody>
-								<%= form_tag shopping_lists_path do %>
-								<% recipe.ingredient_recipes.each do |i| %>
-									<tr>
-										<td> <%= check_box_tag('i[]', i.id) %></td>
-										<td> <%= i.ingredient.name %> </td>
-										<td>
-											<% if i.ingredient.unit.id == 10 %>
-												<%= i.ingredient.unit.unit_name %>
+
+						<table rules="rows" frame="hsides" class="table col-xs-12">
+							<thead>
+								<h4 style="font-weight: bold ">食材</h4>
+							</thead>
+						<!-- <div class="col-xs-12" style="height: 1px; color: black;"></div> -->
+							<tbody>
+							<%= form_tag shopping_lists_path do %>
+							<% recipe.ingredient_recipes.each do |i| %>
+								<tr>
+									<td> <%= check_box_tag('i[]', i.id) %></td>
+									<td> <%= i.ingredient.name %> </td>
+									<td>
+										<% if i.ingredient.unit.id == 10 %>
+											<%= i.ingredient.unit.unit_name %>
+										<% else %>
+											<% if i.ingredient.unit.prepositive == nil %>
+												<%= i.quantity %><%= i.ingredient.unit.unit_name %>
 											<% else %>
-												<% if i.ingredient.unit.prepositive == nil %>
-													<%= i.quantity %><%= i.ingredient.unit.unit_name %>
-												<% else %>
-													<%= i.ingredient.unit.unit_name %><%= i.quantity %><%= i.ingredient.unit.prepositive %>
-												<% end %>
+												<%= i.ingredient.unit.unit_name %><%= i.quantity %><%= i.ingredient.unit.prepositive %>
 											<% end %>
-										</td>
-									</tr>
-								<%= hidden_field_tag :recipe_id, @recipe.id %>
-								<% end %>
-								</tbody>
-							</table>
+										<% end %>
+									</td>
+								</tr>
+							<%= hidden_field_tag :recipe_id, @recipe.id %>
+							<% end %>
+							</tbody>
+						</table>
 					</div>
 				</div>
 					<div class="col-xs-3 recipe-show-btn-box" style="float:left; margin-top: 40px;">
@@ -60,7 +66,7 @@
 						<!-- <button class="btn recipe-show-main-btn col-xs-12">家にない材料を<br>買い物リストに入れる</button> -->
 
 						<!-- アクションへリダイレクトし、全ての食材をリストに追加させる -->
-						<%= link_to shopping_lists_path(:recipe_id  => recipe.id), method: :post do %>
+						<%= link_to shopping_lists_path(:recipe_id  => recipe.id, :all => "true"), method: :post do %>
 						<button class="btn recipe-show-main-btn col-xs-12">全ての材料を<br>買い物リストに入れる</button>
 						<% end %>
 

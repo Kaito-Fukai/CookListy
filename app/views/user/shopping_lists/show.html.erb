@@ -17,7 +17,7 @@ $(document).ready(function() {
 			<div class="">
 				<h3 style="display: inline-block;">買い物リスト</h3>
 				<%= link_to "買い物リストをメールで送る", shopping_lists_send_path, class: 'btn main-btn' %>
-				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, class: 'btn btn-danger' %>
+				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-danger' %>
 			</div>
 			<table class="table table-sm">
 				<thead class="thead-light">

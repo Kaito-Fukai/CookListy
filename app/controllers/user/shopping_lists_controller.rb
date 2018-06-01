@@ -14,7 +14,7 @@ before_action :authenticate_user!
        new_ingredient.user_id = current_user.id
        new_ingredient.save
        redirect_to shopping_list_path(current_user)
-    elsif params[:i].nil?  # 各種レシピ画面から「全ての食材を追加」した場合
+    elsif params[:all] == "true"  # 各種レシピ画面から「全ての食材を追加」した場合
       @ingredients = IngredientRecipe.where(recipe_id: params[:recipe_id])
       @ingredients.each do |i|
         @list_item = ShoppingList.new(recipe_id: params[:recipe_id])
@@ -25,6 +25,9 @@ before_action :authenticate_user!
       end
       session[:recipe_id] = params[:recipe_id]
       redirect_to recently_cooked_recipes_create_path
+    elsif params[:i].nil?
+      flash[:alert] = '食材を一つ以上チェックしてください'
+      redirect_to recipe_path(params[:recipe_id])
     else @ingredients = IngredientRecipe.find(params[:i]) # 各種レシピ画面からチェックボックスを使用して追加した場合（i)にingredient.idが配列で格納されている
       @ingredients.each do |i|
         @list_item = ShoppingList.new(recipe_id: params[:recipe_id])
