@@ -1,6 +1,7 @@
 class CreateSteps < ActiveRecord::Migration[5.1]
   def change
-    create_table :steps, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'    do |t|
+    # create_table :steps   do |t|
+    create_table :steps, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'   do |t|
 
       t.integer :recipe_id,				null: false
       t.text	:steps_expression,		null: false

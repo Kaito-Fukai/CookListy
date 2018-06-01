@@ -1,6 +1,7 @@
 class CreateStockLists < ActiveRecord::Migration[5.1]
   def change
-    create_table :stock_lists, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'    do |t|
+    # create_table :stock_lists   do |t|
+    create_table :stock_lists, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'   do |t|
 
       t.integer		:ingredient_id
       t.string		:ingredient_free_name
