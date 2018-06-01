@@ -2,7 +2,9 @@
 
 class DeviseCreateAdministrators < ActiveRecord::Migration[5.1]
   def change
-    create_table :administrators   do |t|
+    # create_table :administrators   do |t|
+    create_table :administrators, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'   do |t|
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
