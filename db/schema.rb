@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180601031350) do
+ActiveRecord::Schema.define(version: 20180601080855) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20180601031350) do
   create_table "stock_lists", force: :cascade do |t|
     t.integer "ingredient_id"
     t.string "ingredient_free_name"
-    t.integer "quantity"
+    t.string "quantity"
     t.datetime "limit"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
