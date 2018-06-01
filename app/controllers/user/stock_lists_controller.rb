@@ -35,7 +35,7 @@ private
   end
 
   def stock_list_params
-    params.require(:stock_list).permit(:ingredient_id, :quantity, :limit, :stock_image)
+    params.require(:stock_list).permit(:ingredient_free_name, :quantity, :limit, :stock_image)
   end
 
 end
