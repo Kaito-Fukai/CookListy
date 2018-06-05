@@ -9,6 +9,7 @@ before_action :authenticate_user!
 
 
   def create
+    binding.pry
     if params[:i] == "new_ingredient" # shopping_list#show内追加フォームから投稿した場合
        new_ingredient = ShoppingList.new(sl_params)
        new_ingredient.user_id = current_user.id
@@ -25,10 +26,11 @@ before_action :authenticate_user!
       end
       session[:recipe_id] = params[:recipe_id]
       redirect_to recently_cooked_recipes_create_path
-    elsif params[:i].nil?
+    elsif params[:shopping_list].nil?
       flash[:alert] = '食材を一つ以上チェックしてください'
       redirect_to recipe_path(params[:recipe_id])
-    else @ingredients = IngredientRecipe.find(params[:i]) # 各種レシピ画面からチェックボックスを使用して追加した場合（i)にingredient.idが配列で格納されている
+    else
+      @ingredients = IngredientRecipe.find(params[:shopping_list][:i_ids]) # 各種レシピ画面からチェックボックスを使用して追加した場合（i)にingredient.idが配列で格納されている
       @ingredients.each do |i|
         @list_item = ShoppingList.new(recipe_id: params[:recipe_id])
         @list_item.user_id = current_user.id

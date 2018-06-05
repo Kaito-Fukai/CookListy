@@ -5,6 +5,7 @@
 		<div class="", style="width: 90%; margin: 0 auto;">
 			<div class="">
 				<h3 style="display: inline-block;">家にあるものリスト</h3>
+				<%= link_to "全ての食材を削除する", stock_list_path(id: 'destroy_all'),method: :delete, class: 'btn btn-danger'%>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
@@ -39,7 +40,6 @@
 						<% end %>
 				</tbody>
 			</table>
-				<%= link_to "全ての食材を削除する", stock_list_path(id: 'destroy_all'),method: :delete, class: 'btn btn-danger',style: 'float: right;'%>
 
 			<div class="add_ingredients_form", style="margin-bottom: 20px;">
 				<h3>食材を追加する</h3>

@@ -1,4 +1,4 @@
-<div class="">
+<div class="recipe-index-box">
 	<% recipes.each do |recipe| %>
 		<table class="table table-sm">
 			<thead></thead>
@@ -31,7 +31,7 @@
 							<% elsif request.path_info.include?("favorites") %>
 								<li> <%= link_to "見る", recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>
 								<li> <%= link_to "アレンジしてマイレシピに追加", new_my_recipe_path(recipe_id: recipe.id), class: 'btn sub-btn recipe-index-btn' %> </li>
-								<li> <%= link_to "お気に入りから削除", favorite_path(recipe), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn danger-btn recipe-index-btn' %> </li>
+								<li> <%= link_to "お気に入りから削除", favorite_path(recipe.id), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn danger-btn recipe-index-btn' %> </li>
 							<% else %>
 								<li> <%= link_to "見る", recipe_path(recipe), class: 'btn main-btn recipe-index-btn' %> </li>
 								<li> <%= link_to "お気に入りに追加", recipe_favorites_path(recipe), method: :post, class: 'btn sub-btn recipe-index-btn' %> </li>

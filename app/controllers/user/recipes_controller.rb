@@ -6,7 +6,7 @@ class User::RecipesController < ApplicationController
 		end
 
 		def tagSearch
-			@recipes_count = Recipe.includes(:recipe_tags).where(recipe_tags: { tag_id: params[:tag_id]})
+			@recipes_count = Recipe.where(user_id: nil).includes(:recipe_tags).where(recipe_tags: { tag_id: params[:tag_id]})
 			@recipes = @recipes_count.page(params[:page])
 		    @word = Tag.find(params[:tag_id]).word
 		end
@@ -19,6 +19,7 @@ class User::RecipesController < ApplicationController
 
 		def show
 			@recipe = Recipe.find(params[:id])
+			@stuff = ShoppingList.new
 		end
 
 	private
