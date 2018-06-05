@@ -55,13 +55,17 @@ body {
     padding-top: 200px;
     overflow: auto;
     min-height: 700px;
-
 }
 
 // user header
 	// user
 	.header {
-		height: 75px;
+		height: 80px;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffcf34+0,35cdff+86,ffcf34+86,ffcf34+92,ffcf34+100&1+91,0+100 */
+		background: -moz-linear-gradient(top, rgba(255,207,52,1) 0%, rgba(255,207,52,1) 86%, rgba(255,207,52,1) 91%, rgba(255,207,52,0.89) 92%, rgba(255,207,52,0) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(255,207,52,1) 0%,rgba(255,207,52,1) 86%,rgba(255,207,52,1) 91%,rgba(255,207,52,0.89) 92%,rgba(255,207,52,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(255,207,52,1) 0%,rgba(255,207,52,1) 86%,rgba(255,207,52,1) 91%,rgba(255,207,52,0.89) 92%,rgba(255,207,52,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcf34', endColorstr='#00ffcf34',GradientType=0 ); /* IE6-9 */
 	}
 	.header-box {
 		width: 95%;
@@ -75,7 +79,6 @@ body {
 	.user_header {
 		height: 75px;
 	}
-
 	// 検索フォーム(user-header, admin/ingredients#show)
 	.search-box {
 		margin: 0 5px;
@@ -195,6 +198,7 @@ body {
 }
 
 
+
 // user/recipe#index などレシピindex系ページ
 .recipe-index {
 	list-style: none;
@@ -215,6 +219,9 @@ body {
 .recipe-index-btn {
 	width: 220px;
 }
+.recipe-index-box table{
+	margin-bottom:0;
+}
 
 
 
@@ -226,12 +233,15 @@ ul {
 .accordion-border {
     // border-right: 2px solid;
     // height: 200px;
-    border: 2px solid;
     // width: 2px;
     // float: left;
     // display: inline;
     margin-top: 20px;
     height: 100%;
+    background-color: #EFEFEF;
+}
+.accordion-border h4{
+	// margin-top: 2px;
 }
 .accordion ul {
     -webkit-padding-start: 0px !important;
@@ -262,8 +272,9 @@ ul {
   // font-size: 20px;
 }
 
+
 .answer {
-  display: none;
+  // display: none;
   // font-size: 12px;
 }
 
@@ -282,11 +293,9 @@ ul {
 
 // recipe#show系
 .recipe-show-btn {
-	font-size: 10px;
-	background-color: #EFEFEF;
+	font-size: 12px;
+	background-color: #c0c0c0;
 	margin: 2px 0px;
-	border: 1px solid;
-	border-color: black;
 }
 .recipe-show-btn-box p {
 	margin: 0;
@@ -296,9 +305,9 @@ ul {
 	background-color: #C6FF88;
 	margin: 5px 0;
 	vertical-align: middle;
-	height: 65px;
-	width: 100%;
-	border-radius: 0 5px 5px 0;
+	height: 40px;
+	border-radius: 7px;
+	// width: 100%;
 	display: inline-block;
     margin-bottom: 0;
     font-weight: normal;
@@ -307,7 +316,6 @@ ul {
     touch-action: manipulation;
     cursor: pointer;
     background-image: none;
-    border: 1px solid #ccc;
     white-space: nowrap;
     padding: 6px 6px;
     font-size: 14px;
@@ -318,6 +326,7 @@ ul {
     user-select: none;
 	// border: double;
 	// border-color: #ffd7d9;
+	-webkit-appearance: button;
 }
 .flash-alert {
 	color:red;

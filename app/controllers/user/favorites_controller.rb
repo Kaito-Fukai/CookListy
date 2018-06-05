@@ -2,8 +2,7 @@ class User::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    f = Favorite.where(user_id: current_user.id)
-    @recipes = Recipe.where(id: f).page(params[:page]).reverse_order
+    @recipes = Recipe.includes(:favorites).where(favorites: { user_id: current_user.id }).page(params[:page]).reverse_order
   end
 
   def new
@@ -17,8 +16,8 @@ class User::FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Favorite.find(params[:id])
-    favorite.destroy
+    favorite = Favorite.where(recipe_id: params[:id]).where(user_id: current_user.id)
+    favorite.destroy_all
     redirect_to favorites_path
   end
 
