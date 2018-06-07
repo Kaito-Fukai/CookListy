@@ -9,7 +9,6 @@ before_action :authenticate_user!
 
 
   def create
-    binding.pry
     if params[:i] == "new_ingredient" # shopping_list#show内追加フォームから投稿した場合
        new_ingredient = ShoppingList.new(sl_params)
        new_ingredient.user_id = current_user.id
