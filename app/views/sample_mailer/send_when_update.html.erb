@@ -35,9 +35,9 @@
   <header class="clearfix header" style="height: 50px; background-color: #FFCF34; width: 100%">
     <h2>CookListy<h2> <h6>買い物リスト自動生成サービス</h6>
   </header>
-  <h4><%= @user.last_name %> <%= @user.first_name %> 様</h4>
+  <h4><%= @helper.name %> 様</h4>
   <h3 style="color: #f2450c;">ご利用ありがとうございます！</h3>
-  <p>買い物リストが送信されました。<br>
+  <p><%= @user.last_name %><%= @user.first_name %>様から買い物リストが送信されました。<br>
      お買い物はお気をつけてどうぞ！</p>
   <hr />
     <table class="table table-in-mail">

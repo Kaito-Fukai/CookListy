@@ -20,7 +20,6 @@
 							<thead>
 								<h4 style="font-weight: bold; margin-top: 0; ">食材</h4>
 							</thead>
-						<!-- <div class="col-xs-12" style="height: 1px; color: black;"></div> -->
 							<tbody>
 								<% recipe.ingredient_recipes.each do |i| %>
 									<tr>
@@ -53,7 +52,7 @@
 					<div class="col-xs-3 recipe-show-btn-box" style="float:right; display:inline-block;">
 						<div class="col-xs-12">
 							<h4 style="margin-top:0px;">Tags:</h4><% recipe.tags.each do |t| %>
-									 <div class="label label-default", style="font-size: 14px; margin-right:5px; ">
+									 <div class="label label-default recipe-show-tags">
 									 	<%= t.word %>
 									 </div>
 								 <% end %>

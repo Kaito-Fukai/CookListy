@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :stock_lists, dependent: :destroy
   has_many :shopping_lists, dependent: :destroy
   has_many :recently_cooked_recipes, dependent: :destroy
+  has_many :helpers, dependent: :destroy
   enum retire_flag: { 会員: false,
                       退会済み: true}
 
