@@ -14,22 +14,33 @@ $(document).ready(function() {
 <div class="container">
 	<div class="row">
 		<div class="", style="width: 90%; margin: 0 auto;">
+				<h3>買い物リスト</h3>
 			<div class="">
-				<h3 style="display: inline-block;">買い物リスト</h3>
-				<%= link_to "買い物リストをメールで送る", shopping_lists_send_path, class: 'btn main-btn', style: 'width: 195px;', data: {disable_with: '送信中...'} %>
-				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-danger' %>
+				<div class="shopping-list-mail">
+					<h5 style="display: inline-block; font-weight: bold;">リストをメールで送る：</h5>
+					<h5 style="display: inline-block;">自分宛に</h5>
+					<%= link_to "送る", shopping_lists_send_path, class: 'btn main-btn', style: 'width: 80px;', data: {disable_with: '送信中...'} %>
+					<div class="", style="margin-left: 20px; display: inline-block;">
+					<h5 style="display: inline-block;">ヘルパー宛</h5>
+					<%= form_tag(shopping_lists_send_path, method: :get) do %>
+						<%= select_tag('helper', options_from_collection_for_select(Helper.where(user_id: current_user.id), :id, :name )) %>
+					<h5 style="display: inline-block;">様に</h5>
+						<%= submit_tag "送る", class: 'btn main-btn', style: 'width: 80px;', data: {disable_with: '送信中...'} %>
+						<% end %>
+					</div>
+				</div>
+
+				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-danger', style: 'display: inline-block; float: right;' %>
 			</div>
 			<table class="table table-sm">
 				<thead class="thead-light">
 					<tr>
 						<th>№</th>
 						<th>食材名</th>
-						<!-- <th>使う料理</th> -->
-						<th>量</th>
+						<!-- <th>量</th> -->
 						<th><%= sortable "created_at", "追加日時" %><%= "(クリックで並べ替え可)" %></th>
 						<th>使うレシピ</th>
 						<th colspan="2"> メニュー </th>
-						<!-- <th>  </th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -41,12 +52,11 @@ $(document).ready(function() {
 						<% @ingredients.each do |i| %>
 							<td> <% n += 1 %><%= n %></td>
 							<td> <%= i.ingredient.name %></td>
-							<!-- <td></td> -->
-							<td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td>
+							<!-- <td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td> -->
 							<td> <%= i.created_at.to_s(:created_at) %></td>
 							<td>
 								<% if i.recipe.present? %>
-								<%= i.recipe.recipe_name %>
+								<%= link_to i.recipe.recipe_name, recipe_path(i.recipe)  %>
 								<% else %>
 								<% end %>
 							</td>

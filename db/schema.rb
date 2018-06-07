@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180601080855) do
+ActiveRecord::Schema.define(version: 20180607074942) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20180601080855) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "helpers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

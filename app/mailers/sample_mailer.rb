@@ -5,10 +5,19 @@ class SampleMailer < ApplicationMailer
   #
   #   en.sample_mailer.send_when_update.subject
   #
-  def send_when_update(user)
+
+  def send_to_yourself(user)
     @user = user
     @ingredients = ShoppingList.where(user_id: user.id)
      mail to: user.email,
+     subject: '買い物リストが送信されました'
+  end
+
+  def send_when_update(user, helper_id)
+    @user = user
+    @ingredients = ShoppingList.where(user_id: user.id)
+    @helper = Helper.find(helper_id)
+     mail to: @helper.address,
      subject: '買い物リストが送信されました'
   end
 end
