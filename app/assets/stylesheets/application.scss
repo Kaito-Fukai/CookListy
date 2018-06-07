@@ -78,7 +78,7 @@ body {
 		height:  75px;
 		line-height: 75px;
 		font-weight: bold;
-		font-size: 30px;
+		font-size: 35px;
 	}
 	.title-logo:hover{
 		color: black;
@@ -91,10 +91,11 @@ body {
 	}
 	.greeting {
 		margin-right: 7px;
+    	margin-top: 12px;
 		text-align: right;
 		font-style: italic;
-		font-size: 17px;
-	}
+	    font-size: 13px;
+    	}
 	.user_header {
 		height: 75px;
 	}
@@ -169,7 +170,7 @@ body {
 	.header-menu{
 	    float: left;
 	    vertical-align: middle;
-	 	margin: 29.5px 5px 0;
+	 	margin: 0px 2px 0 2px;
 	}
 
 

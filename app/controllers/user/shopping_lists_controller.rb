@@ -5,6 +5,8 @@ before_action :authenticate_user!
   def show
   	@ingredients = ShoppingList.where(user_id: current_user.id).order(sort_column + ' ' + sort_direction)
     @new_ingredient = ShoppingList.new
+    @user = current_user
+    @helper = Helper.find_by(user_id: current_user.id)
   end
 
 
@@ -69,12 +71,17 @@ before_action :authenticate_user!
   end
 
   def send_mail
-    SampleMailer.send_when_update(current_user).deliver
     @ingredients = ShoppingList.where(user_id: current_user.id)
-    redirect_to shopping_list_path(current_user)
+      if params[:helper].nil?
+      SampleMailer.send_to_yourself(current_user).deliver
+      else
+      SampleMailer.send_when_update(current_user, params[:helper]).deliver
+      end
+    redirect_to shopping_list_path(current_user), notice: "買い物リストを送信しました！"
   end
 
-  private
+private
+
   def sl_params
     params.require(:shopping_list).permit(:user_id, :ingredient_id, :quantity)
   end

@@ -20,18 +20,18 @@
 				</div>
 				<ul class="nav-list"> <!-- FIX:ハンバーガーメニュー化 -->
 					<% if user_signed_in? %>
+						<li class="greeting">こんにちは、<%= current_user.last_name %> <%= current_user.first_name %>様</li>
 						<li class="header-menu">
 						<%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-						     <div style="margin-top: 29px; float: left">|</div>
+						     <div style="float: left">|</div>
 			  			<li class="header-menu">
 						<%= link_to 'マイレシピ', my_recipes_path(current_user) %> </li>
-						     <div style="margin-top: 29px; float: left">|</div>
+						     <div style="float: left">|</div>
 						<li class="header-menu">
 						<%= link_to '買い物リスト ', shopping_list_path(current_user) %>  </li>
-						     <div style="margin-top: 29px; float: left">|</div>
+						     <div style="float: left">|</div>
 						<li class="header-menu">
 						<%= link_to '家にあるものリスト ', stock_list_path(current_user) %>  </li>
-						<li class="greeting">こんにちは、<%= current_user.last_name %> <%= current_user.first_name %>様</li>
 					<% else %>
 						<li class="header-menu">
 						<%= link_to "ログイン", new_user_session_path %> </li>
