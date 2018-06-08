@@ -11,10 +11,10 @@
 				<thead class="thead-light">
 					<tr>
 						<th>食材名</th>
+						<th>写真</th>
 						<th>量</th>
 						<th><%= sortable "created_at", "賞味（消費）期限" %></th>
 						<th>リスト追加日</th>
-						<th>写真</th>
 						<th></th>
 						<!-- <th>  </th> -->
 					</tr>
@@ -25,16 +25,21 @@
 						<% else %>
 							<% @stocks.each do |s| %>
 								<tr>
-									<td> <%= s.ingredient_free_name %></td>
-									<td> <%= s.quantity %></td>
-									<td> <% if s.limit == nil %>
+									<td class="col-xs-3"> <%= s.ingredient_free_name %></td>
+									<td class="col-xs-2"> <%= attachment_image_tag s, :stock_image,  :style => 'height:100px; width: auto;', fallback: "/images/no_image.jpg" %></td>
+									<td class="col-xs-2"> <% if s.quantity.nil? %>
+ 										 	<%= "未登録" %>
+										 <% else %>
+										 	<%= s.quantity %>
+			 							 <% end %>
+									</td>
+									<td class="col-xs-2"> <% if s.limit.nil? %>
  										 	<%= "未登録" %>
 										 <% else %>
 			 								<%= s.limit.strftime('%Y/%m/%d') %>
 			 							 <% end %> </td>
-									<td> <%= s.created_at.strftime('%Y/%m/%d') %></td>
-									<td> <%= attachment_image_tag s, :stock_image,  :size => '80x80', fallback: "/images/no_image.jpg" %></td>
-									<td> <%= link_to "削除", stock_list_path(s), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
+									<td class="col-xs-2"> <%= s.created_at.strftime('%Y/%m/%d') %></td>
+									<td class="col-xs-1"> <%= link_to "削除", stock_list_path(s), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
 								</tr>
 							<% end %>
 						<% end %>

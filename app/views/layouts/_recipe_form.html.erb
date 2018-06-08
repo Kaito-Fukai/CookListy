@@ -32,12 +32,12 @@ $(document).ready(function() {
 			<%= f.label :memo, 'メモ' %>
 			<%= f.text_field :memo, class: 'col-xs-12' %><br>
 			<!-- タグフォーム：tagモデルへ書き込み -->
-			<%= f.label :recipe_tags, 'タグ　　' %>
+			<%= f.label :recipe_tags, 'タグ' %>
 			<%= f.fields_for :recipe_tags do |rt| %>
 				<%= render 'recipe_tag_fields', f:rt %>
 			<% end %>
 			<div class="links">
-				<%#= link_to_add_association 'もっと入力する', f, :recipe_tags %>
+				<%= link_to_add_association 'もっと入力する', f, :recipe_tags unless request.url.include?("new") %>
 			</div>
 			<!-- 食材フォーム -->
 			<%= f.label :ingredient_recipes, '食材' %>
