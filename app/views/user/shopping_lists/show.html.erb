@@ -40,7 +40,8 @@ $(document).ready(function() {
 						<!-- <th>量</th> -->
 						<th><%= sortable "created_at", "追加日時" %><%= "(クリックで並べ替え可)" %></th>
 						<th>使うレシピ</th>
-						<th colspan="2"> メニュー </th>
+						<th>備考</th>
+						<th> メニュー </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,14 +52,21 @@ $(document).ready(function() {
 						<% n = 0 %>
 						<% @ingredients.each do |i| %>
 							<td> <% n += 1 %><%= n %></td>
-							<td> <%= i.ingredient.name %></td>
-							<!-- <td> <%= i.quantity %><%= i.ingredient.unit_in_lists %></td> -->
+							<td> <% if i.ingredient.nil? %>
+								 	<%= i.stuff_name %>
+								 <% else %>
+								 	<%= i.ingredient.name %>
+								 <% end %>
+							</td>
 							<td> <%= i.created_at.to_s(:created_at) %></td>
 							<td>
 								<% if i.recipe.present? %>
 								<%= link_to i.recipe.recipe_name, recipe_path(i.recipe)  %>
 								<% else %>
 								<% end %>
+							</td>
+							<td>
+								<%= i.memo unless i.memo.nil? %>
 							</td>
 							<td> <%= link_to "編集", edit_shopping_list_path(i), class: 'btn btn-default' %>
 								 <%= link_to "削除", shopping_list_path(i), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-warning' %></td>
@@ -72,10 +80,12 @@ $(document).ready(function() {
 				<h3>食材を追加する</h3>
 				<%= form_for @new_ingredient, url: shopping_lists_path(:i => "new_ingredient"), method: :post do |f| %>
 					<span>食材名</span>
-					<%= f.select :ingredient_id, Ingredient.where(basic_unit_flag: true).map {|u| [u.name_with_unit, u.id]}, {}, {class: "js-example-basic-single"} %>
-					<%#= f.select :recipe_id, Recipe.all.map {|u| [u.recipe_name, u.id]}, {}, {class: "js-example-basic-single"} %>
-					<span style="margin-left: 20px;">数量</span>
-					<%= f.number_field :quantity, :width => '20px' %>
+					<%= f.text_field :stuff_name %>
+						<%#= f.select :ingredient_id, Ingredient.where(basic_unit_flag: true).map {|u| [u.name_with_unit, u.id]}, {}, {class: "js-example-basic-single"} %>
+						<%#= f.select :recipe_id, Recipe.all.map {|u| [u.recipe_name, u.id]}, {}, {class: "js-example-basic-single"} %>
+					<span style="margin-left: 20px;">備考</span>
+						<%= f.text_field :memo %>
+						<%#= f.number_field :quantity, :width => '20px' %>
 					<%= f.submit "リストに追加", class: 'btn btn-default' %>
 				<% end %>
 			</div>

@@ -1,6 +1,10 @@
 <div class="nested-fields">
-	<%= f.select :tag_id, Tag.all.map { |t| [t.word, t.id]}, {}, { class: 'js-example-basic-single label label-default'} %>
-	<%= link_to_remove_association "削除", f, style: "color: black;" %>
+	<% if request.url.include?("new") %>
+		<%= f.select :tag_id, Tag.all.map { |t| [t.word, t.id]}, {}, { class: 'js-example-basic-multiple col-xs-11', multiple: 'multiple'}  %>
+	<% else %>
+		<%= f.select :tag_id, Tag.all.map { |t| [t.word, t.id]}, {}, { class: 'js-example-basic-single label label-default'} %>
+		<%= link_to_remove_association "削除", f, style: "color: black;" %>
+	<% end %>
 	<br>
 </div>
 
@@ -17,4 +21,8 @@
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
 </script>

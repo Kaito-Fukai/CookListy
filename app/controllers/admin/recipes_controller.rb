@@ -15,10 +15,8 @@ class Admin::RecipesController < ApplicationController
 	end
 
 	def update
-
 		recipe = Recipe.find(params[:id])
 		recipe.update(update_recipe_params)
-		binding.pry
 		# 該当レシピのタグを全て削除する
 		# RecipeTag.where(recipe_id: params[:id]).destroy_all
 
@@ -77,8 +75,8 @@ class Admin::RecipesController < ApplicationController
 				:admin_id,
 				ingredient_recipes_attributes: [:id, :recipe_id, :ingredient_id, :quantity, :_destroy],
 				steps_attributes: [:id, :recipe_id, :steps_expression, :steps_order,  :_destroy],
-				recipe_tags_attributes: [:id, :recipe_id, :tag_id,  :_destroy]
 				)
+				# recipe_tags_attributes: [:id, :recipe_id, :tag_id,  :_destroy]
 		end
 
 		def update_recipe_params
@@ -91,7 +89,7 @@ class Admin::RecipesController < ApplicationController
 				:admin_id,
 				ingredient_recipes_attributes: [:id, :recipe_id, :ingredient_id, :quantity, :_destroy],
 				steps_attributes: [:id, :recipe_id, :steps_expression, :steps_order,  :_destroy],
-				recipe_tags_attributes: [:id, :recipe_id, tag_id:, :_destroy]
+				recipe_tags_attributes: [:id, :recipe_id, :tag_id, :_destroy]
 				)
 		end
 

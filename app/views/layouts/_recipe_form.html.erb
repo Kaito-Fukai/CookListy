@@ -37,7 +37,7 @@ $(document).ready(function() {
 				<%= render 'recipe_tag_fields', f:rt %>
 			<% end %>
 			<div class="links">
-				<%= link_to_add_association 'もっと入力する', f, :recipe_tags %>
+				<%= link_to_add_association 'もっと入力する', f, :recipe_tags unless request.url.include?("new") %>
 			</div>
 			<!-- 食材フォーム -->
 			<%= f.label :ingredient_recipes, '食材' %>
