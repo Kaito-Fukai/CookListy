@@ -1,14 +1,15 @@
 <header class="user_header row", style="background-color: #E8E497; ">
 	<div class="header-box">
 		<nav class="clearfix">
-			<%= link_to image_tag('/images/logo.png', :height => '40', :width => "auto", class: "logo"), admin_path %>
-			<div style="display: inline-block; margin-top: 30px; font-style: italic;"> 買い物リスト自動生成サービス </div>
+			<%= link_to "CookListy", root_path, class: 'title-logo' %>
+			<%= link_to image_tag('/images/logo2.png', class: "logo"),root_path %>
+			<div class="header-subtitle"> 買い物リスト自動生成サービス </div>
 	  	  	<ul class="nav-list"> <!-- FIX:ハンバーガーメニュー化 -->
 	  			<li class="header-menu">
-					<span>ログイン中の管理者：<%= current_administrator.name %></li>
-					<div style="line-height: 79px; float: left">|</div>
+					<span class="admin-header-right">ログイン中の管理者：<%= current_administrator.name %></li>
+					<div style="line-height: 75px; margin: 0 5px; float: left">|</div>
 	  			<li class="header-menu">
-					<%= link_to "ログアウトする", destroy_administrator_session_path, method: :delete %></li>
+					<%= link_to "ログアウトする", destroy_administrator_session_path, method: :delete, class: 'admin-header-right'%></li>
 			</ul>
 		</nav>
 	</div>
