@@ -83,7 +83,7 @@ before_action :authenticate_user!
 private
 
   def sl_params
-    params.require(:shopping_list).permit(:user_id, :ingredient_id, :quantity)
+    params.require(:shopping_list).permit(:user_id, :ingredient_id, :quantity, :stuff_name, :memo)
   end
 
   def sort_direction
