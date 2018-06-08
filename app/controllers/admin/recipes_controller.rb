@@ -15,18 +15,21 @@ class Admin::RecipesController < ApplicationController
 	end
 
 	def update
+
 		recipe = Recipe.find(params[:id])
-		recipe.update(recipe_params)
-
+		recipe.update(update_recipe_params)
+		binding.pry
 		# 該当レシピのタグを全て削除する
-		RecipeTag.where(recipe_id: params[:id]).destroy_all
+		# RecipeTag.where(recipe_id: params[:id]).destroy_all
 
-		# tag_idが送信された分だけ新しくRecipeTagをcreateする
-		tags = params[:recipe][:recipe_tags_attributes]
-		tags.each do |tag|
-			t = tags[tag]
-			recipe.recipe_tags.create(tag_id: t["tag_id"][1]) unless t["tag_id"][1] == nil
-		end
+		# # tag_idが送信された分だけ新しくRecipeTagをcreateする
+		# if params[:recipe][:recipe_tags_attributes] =! nil
+		# 	tags = params[:recipe][:recipe_tags_attributes]
+		# 	tags.each do |tag|
+		# 		t = tags[tag]
+		# 		recipe.recipe_tags.create(tag_id: t["tag_id"][1]) unless t["tag_id"][1] == nil
+		# 	end
+		# end
 
 		redirect_to admin_recipe_path(recipe)
 	end
@@ -39,7 +42,7 @@ class Admin::RecipesController < ApplicationController
 	end
 
 	def create
-		@recipe  = Recipe.new(recipe_params)
+		@recipe  = Recipe.new(create_recipe_params)
 		@recipe.administrator_id = current_administrator.id
 		@recipe.save!
 
@@ -64,7 +67,7 @@ class Admin::RecipesController < ApplicationController
 			@recipe = Recipe.find(params[:id])
 		end
 
-		def recipe_params
+		def create_recipe_params
 			params.require(:recipe).permit(
 				:id,
 				:recipe_name,
@@ -72,8 +75,23 @@ class Admin::RecipesController < ApplicationController
 				:image,
 				:user_id,
 				:admin_id,
-				ingredient_recipes_attributes: [:id, :recipe_id, :ingredient_id, :quantity],
-				steps_attributes: [:id, :recipe_id, :steps_expression, :steps_order]
+				ingredient_recipes_attributes: [:id, :recipe_id, :ingredient_id, :quantity, :_destroy],
+				steps_attributes: [:id, :recipe_id, :steps_expression, :steps_order,  :_destroy],
+				recipe_tags_attributes: [:id, :recipe_id, :tag_id,  :_destroy]
+				)
+		end
+
+		def update_recipe_params
+			params.require(:recipe).permit(
+				:id,
+				:recipe_name,
+				:memo,
+				:image,
+				:user_id,
+				:admin_id,
+				ingredient_recipes_attributes: [:id, :recipe_id, :ingredient_id, :quantity, :_destroy],
+				steps_attributes: [:id, :recipe_id, :steps_expression, :steps_order,  :_destroy],
+				recipe_tags_attributes: [:id, :recipe_id, tag_id:, :_destroy]
 				)
 		end
 
