@@ -34,10 +34,10 @@
 						<%= link_to '家にあるものリスト ', stock_list_path(current_user) %>  </li>
 					<% else %>
 						<li class="header-menu">
-						<%= link_to "ログイン", new_user_session_path %> </li>
-						     <div style="line-height: 79px; float: left">|</div>
+						<%= link_to "ログイン", new_user_session_path ,style: 'line-height: 75px; height: 75px;'%> </li>
+						     <div style="line-height: 75px; float: left">|</div>
 						<li class="header-menu">
-						<%= link_to "新規登録", new_user_registration_path %> </li>
+						<%= link_to "新規登録", new_user_registration_path ,style: 'line-height: 75px; height: 75px;' %> </li>
 					<% end %>
 				</ul>
 			</nav>
