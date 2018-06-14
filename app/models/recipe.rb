@@ -14,6 +14,8 @@ class Recipe < ApplicationRecord
 
   attachment :image
 
+  validates :recipe_name, presence: true
+
   accepts_nested_attributes_for :ingredient_recipes, allow_destroy: true
   accepts_nested_attributes_for :recipe_tags, allow_destroy: true
   accepts_nested_attributes_for :steps, allow_destroy: true

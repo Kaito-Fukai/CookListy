@@ -7,6 +7,7 @@ class User::MyRecipesController < ApplicationController
 
 	def show
 		@recipe = Recipe.find(params[:id])
+		@stuff = ShoppingList.new
 	end
 
 	def new
@@ -64,33 +65,43 @@ class User::MyRecipesController < ApplicationController
 		redirect_to my_recipes_path
 	end
 
-	def new_create #完全新規レシピ専用のcreateアクション
-	end
+	def create
+	    ActiveRecord::Base.transaction do #トランザクション処理を定義
+			@recipe  = Recipe.new(recipe_params)
+			@recipe.user_id = current_user.id
+			@recipe.save!
 
-	def create #既存レシピのアレンジ時専用のcreateアクション
-		@recipe  = Recipe.new(recipe_params)
-		@recipe.user_id = current_user.id
-		@recipe.save!
+			# 入力なしでも登録可能
+			if params[:recipe][:recipe_tags_attributes].present?
+			tags = params[:recipe][:recipe_tags_attributes]
+			tags.each do |tag|
+				t = tags[tag]
+				@recipe.recipe_tags.new(tag_id: t["tag_id"][1]).save! unless t["tag_id"][1] == nil || t["_destroy"] == '1'
+			end
+			end
 
-		tags = params[:recipe][:recipe_tags_attributes]
-		tags.each do |tag|
-			t = tags[tag]
-			@recipe.recipe_tags.new(tag_id: t["tag_id"][1]).save! unless t["tag_id"][1] == nil || t["_destroy"] == '1'
-		end
+			# 入力必須
+			ingredients = params[:recipe][:ingredient_recipes_attributes]
+				ingredients.each do |ingredient|
+				i = ingredients[ingredient]
+				@recipe.ingredient_recipes.new(ingredient_id: i["ingredient_id"], quantity: i["quantity"]).save! unless i["_destroy"] == '1'
+			end
 
-		ingredients = params[:recipe][:ingredient_recipes_attributes]
-		ingredients.each do |ingredient|
-			i = ingredients[ingredient]
-			@recipe.ingredient_recipes.new(ingredient_id: i["ingredient_id"], quantity: i["quantity"]).save! unless i["_destroy"] == '1'
-		end
+			# 入力必須
+			steps = params[:recipe][:steps_attributes]
+			steps.each do |step|
+				s = steps[step]
+				@recipe.steps.new(steps_order: s["steps_order"], steps_expression: s["steps_expression"]).save! unless s["_destroy"] == '1'
+			end
+	    end
 
-		steps = params[:recipe][:steps_attributes]
-		steps.each do |step|
-			s = steps[step]
-			@recipe.steps.new(steps_order: s["steps_order"], steps_expression: s["steps_expression"]).save! unless s["_destroy"] == '1'
-		end
-
+	    # ↓例外が発生しなかった場合の処理を記述＝購入履歴の保存
 		redirect_to my_recipes_path
+
+		# 例外発生時の処理
+	    rescue ActiveRecord::RecordInvalid
+	    flash.now[:alert] = '必須項目をすべて入力してください（"レシピ名"・"食材"・"作り方"は必須です）'
+	    render :new
 	end
 
 

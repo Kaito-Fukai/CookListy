@@ -5,6 +5,9 @@
 		<%= render 'layouts/header' %>
 		<div class="container">
 			<div class="row">
+      			<div class ="alert", style='font-size: 22px; color: red; font-weight: bold;'>
+      			<%= alert %>
+      			</div>
 				<%= form_for @recipe, url: my_recipes_path, method: :post do |f| %>
 					<%= render 'layouts/recipe_form', recipe: @recipe, f: f %>
 				<% end %>
