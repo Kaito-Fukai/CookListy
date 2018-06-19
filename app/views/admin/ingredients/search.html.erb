@@ -97,7 +97,7 @@
 									<td> <%= i.category %></td>
 									<td> <%= IngredientRecipe.where(ingredient_id: i.id).count %></td>
 									<td> <%= link_to "編集する", edit_admin_ingredient_path(i) %></td>
-									<td> <%= link_to "削除する", admin_ingredient_path(i), method: :delete %></td>
+									<td> <%= link_to "削除する", admin_ingredient_path(i), method: :delete, data: {confirm: '本当に削除してよろしいですか?'} %></td>
 								</tr>
 								<% end %>
 							</tbody>

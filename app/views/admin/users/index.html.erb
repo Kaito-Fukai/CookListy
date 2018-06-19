@@ -33,9 +33,9 @@
 					<td><%= users.recipes.count %></td>
 					<td><%= users.retire_flag %>
 						<% if users.retire_flag == '会員' %>
-							<%= link_to '退会させる', admin_user_retire_path(users.id), class: 'btn' %>
+							<%= link_to '退会させる', admin_user_retire_path(users.id), data: {confirm: '本当によろしいですか?'}, class: 'btn' %>
 						<% else %>
-							<%= link_to '復活させる', admin_user_entitle_path(users.id), class: 'btn' %>
+							<%= link_to '復活させる', admin_user_entitle_path(users.id), data: {confirm: '本当によろしいですか?'}, class: 'btn' %>
 						<% end %>
 					</td>
 				</tr>

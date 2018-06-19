@@ -68,7 +68,7 @@
 				<!-- アクションへリダイレクトし、レシピ-家にあるもの → 残ったものをリストへ追加させる -->
 				<%= link_to "編集する", edit_admin_recipe_path(@recipe), class: 'btn sub-btn col-xs-12' %>
 				<!-- アクションへリダイレクトし、全ての食材をリストに追加させる -->
-				<%= link_to "削除する", admin_recipe_path(@recipe), class: 'btn danger-btn col-xs-12' %>
+				<%= link_to "削除する", admin_recipe_path(@recipe), data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn danger-btn col-xs-12' %>
 			</div>
 		</div>
 		<div class="col-xs-12" style="margin-top: 20px">
