@@ -77,7 +77,7 @@ before_action :authenticate_user!
       else
       SampleMailer.send_when_update(current_user, params[:helper]).deliver
       end
-    redirect_to shopping_list_path(current_user), notice: "買い物リストを送信しました！"
+    redirect_to shopping_list_path(current_user), alert: '買い物リストを送信しました!'
   end
 
 private

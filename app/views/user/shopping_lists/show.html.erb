@@ -17,6 +17,11 @@ $(document).ready(function() {
 				<h3>買い物リスト</h3>
 			<div class="">
 				<div class="shopping-list-mail">
+					<% if flash[:alert].present? %>
+						<div style='font-size: 18px; color: mediumseagreen; font-weight: bold;'>
+		  					<%= alert %>
+		  				</div>
+		  			<% end %>
 					<h5 style="display: inline-block; font-weight: bold;">リストをメールで送る：</h5>
 					<h5 style="display: inline-block;">自分宛に</h5>
 					<%= link_to "送る", shopping_lists_send_path, class: 'btn main-btn', style: 'width: 80px;', data: {disable_with: '送信中...'} %>
@@ -28,9 +33,9 @@ $(document).ready(function() {
 						<%= submit_tag "送る", class: 'btn main-btn', style: 'width: 80px;', data: {disable_with: '送信中...'} %>
 						<% end %>
 					</div>
+				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-danger', style: 'display: inline-block;  float: right;' %>
 				</div>
 
-				<%= link_to "全ての食材を削除する", shopping_list_path(id: 'destroy_all'), method: :delete, data: {confirm: '本当に削除してよろしいですか?'}, class: 'btn btn-danger', style: 'display: inline-block; float: right;' %>
 			</div>
 			<table class="table table-sm">
 				<thead class="thead-light">
