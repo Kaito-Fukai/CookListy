@@ -16,6 +16,7 @@ Rails.application.routes.draw do
           get   :helper_edit
           patch :helper_update
         end
+          post  :helper_create
       end
       patch '/users/:id/retire', to: 'users#retire'
       patch '/users/retire_completed', to: 'users#retire_completed'

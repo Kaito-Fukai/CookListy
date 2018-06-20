@@ -5,6 +5,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    @helper = Helper.new
   end
 
   def profile_edit
@@ -18,13 +19,19 @@ class User::UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def helper_create
+    @helper = Helper.new(helper_params)
+    @helper.save
+    redirect_to user_path(current_user)
+  end
+
   def helper_edit
-    @user = User.find(current_user.id)
+    @helper = Helper.find(params[:id])
   end
 
   def helper_update
-    @user = User.find(current_user.id)
-    @user.update(helpers_params)
+    @helper = Helper.find(params[:id])
+    @helper.update(helper_params)
     redirect_to user_path(current_user)
   end
 
@@ -42,12 +49,15 @@ class User::UsersController < ApplicationController
                                                                :first_name_kana, 
                                                                :password, 
                                                                :password_confirmation])
-    # params.require(:user).permit()
   end
 
-  def helpers_params
-    params.require(:user).permit(:helper_name_1, :helper_address_1, :helper_name_2, :helper_address_2, :helper_name_3, :helper_address_3)
+  def helper_params
+    params.require(:helper).permit(:name, :address)
   end
+
+  # def helpers_params
+  #   params.require(:user).permit(:helper_name_1, :helper_address_1, :helper_name_2, :helper_address_2, :helper_name_3, :helper_address_3)
+  # end
 
    def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [ :agreement, :profile, :sex, :telephone_number])
