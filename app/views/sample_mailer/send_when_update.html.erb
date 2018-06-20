@@ -40,16 +40,26 @@
   <p><%= @user.last_name %><%= @user.first_name %>様から買い物リストが送信されました。<br>
      お買い物はお気をつけてどうぞ！</p>
   <hr />
-    <table class="table table-in-mail">
+       <table class="table table-in-mail">
         <tr>
           <th>食材名</th>
-          <th>量</th>
+          <th>備考</th>
           <th>追加日<th>
         </tr>
       <% @ingredients.each do |i| %>
         <tr>
-          <td> <%= i.ingredient.name %></td>
-          <td> <%= i.quantity%><%= i.ingredient.unit_in_lists %></td>
+          <td> <% if i.ingredient.present? %>
+               <%= i.ingredient.name %>
+               <% else %>
+               <%= i.stuff_name %>
+               <% end %>
+          </td>
+          <td> <% if i.memo.present? %>
+               <%= i.memo %>
+               <% else %>
+               -
+               <% end %>
+          </td>
           <td> <%= i.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
       <% end %>
