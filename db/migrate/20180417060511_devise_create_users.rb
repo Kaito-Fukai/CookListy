@@ -2,8 +2,9 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   def change
-    #create_table :users do |t|
-    create_table :users, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
+    option =  'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' if Rails.env.production?
+
+    create_table :users, :options => option do |t|
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

@@ -1,7 +1,8 @@
 class CreateIngredients < ActiveRecord::Migration[5.1]
   def change
-    # create_table :ingredients   do |t|
-    create_table :ingredients, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'   do |t|
+    option = 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' if Rails.env.production?
+
+    create_table :ingredients, :options => option do |t|
 
 	    t.string	:name,				null: false, index: true, limit: 191
       t.string	:name_kana, 		null: false, index: true, limit: 191

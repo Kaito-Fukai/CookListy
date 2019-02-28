@@ -1,7 +1,8 @@
 class CreateTags < ActiveRecord::Migration[5.1]
   def change
-    # create_table :tags   do |t|
-    create_table :tags, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
+    option = 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' if Rails.env.production?
+
+    create_table :tags, :options =>  option do |t|
 
       t.string	:word,		 null: false,	index: true
       t.string  :category,	 index: true

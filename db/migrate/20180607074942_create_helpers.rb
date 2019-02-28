@@ -1,7 +1,8 @@
 class CreateHelpers < ActiveRecord::Migration[5.1]
   def change
-    # create_table :helpers do |t|
-    create_table :helpers, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
+    option = 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' if Rails.env.production?
+
+    create_table :helpers, :options => option do |t|
       t.string :name
       t.string :address
       t.integer :user_id

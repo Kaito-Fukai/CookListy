@@ -1,7 +1,8 @@
 class CreateShoppingLists < ActiveRecord::Migration[5.1]
   def change
-    # create_table :shopping_lists   do |t|
-    create_table :shopping_lists, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC'   do |t|
+    option = 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' if Rails.env.production?
+
+    create_table :shopping_lists, :options => option do |t|
 
 	  t.integer     :user_id,   	null: false
       t.integer		:ingredient_id
