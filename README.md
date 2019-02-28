@@ -3,29 +3,29 @@
 [![RoR version](https://img.shields.io/badge/Ruby%20on%20Rails-5.1.6-red.svg)]()
 
 ### 調理スタート！までをお手伝いする、買い物リスト生成アプリケーションです。
+#### http://cooklisty.online
 
 ## できること
-- レシピの閲覧
-本サービスに登録されたレシピを閲覧し、今日の献立を決められます。
+#### レシピの閲覧
+本サービスに登録されたレシピを閲覧し、今日の献立を決められます。レシピは自分で登録することもできます。
 ![search](https://user-images.githubusercontent.com/36021748/53551204-0d803400-3b7c-11e9-846b-8c6941533beb.gif)
 
-- 買い物リストの生成
+#### 買い物リストの生成
 選択したレシピから、ボタン一つで買い物リストを生成・管理できます。メールで送信することもできます。
 ![register_to_list](https://user-images.githubusercontent.com/36021748/53551260-386a8800-3b7c-11e9-83f7-c50222d97eae.gif)
 
-買い物リストにはレシピを経由せず直接食材を登録することもできます。
+買い物リストには、レシピを経由せず食材を直接登録することもできます。
 ![register_to_list_man](https://user-images.githubusercontent.com/36021748/53551202-0ce79d80-3b7c-11e9-97cb-ac37b0b59301.gif)
 
-
-- ストックリストの作成
-あらかじめ家にある食材を写真付きで登録できます。
+#### ストックリストの作成
+家にある食材を写真付きで登録できます。
 ![stocklist](https://user-images.githubusercontent.com/36021748/53551205-0d803400-3b7c-11e9-8b68-401b7da46a7a.gif)
 
 
 ## Published at:
-http://cooklisty.online
+#### http://cooklisty.online
 
-#### The following Users can be used: ※要更新
+#### The following Users can be used:
 
 [Common user] 
 
@@ -39,7 +39,7 @@ email: test_user_a@example.com,  password: vvv123
 ## Requirement
 Ruby >= 2.3.0
 
-Bundler ~> 1.17.1
+Bundler 1.16.1 - 1.17.3
 
 ## Installation
 
