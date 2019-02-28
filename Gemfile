@@ -50,7 +50,7 @@ gem 'refile-mini_magick'
 gem 'seed-fu'
 
 # added for deployment
-gem 'json', '1.8.3'
+gem 'json', '1.8.5'
 gem 'mysql2'
 gem 'listen', '>= 3.0.5', '< 3.2'
 
